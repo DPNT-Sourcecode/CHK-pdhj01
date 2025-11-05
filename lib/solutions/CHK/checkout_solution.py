@@ -18,8 +18,10 @@ class CheckoutSolution:
                         total += items[sku]["price"]
                     else:
                         promo = items[sku]["promo"]
-                        pattern = r'()'
-                        match = re.search('', promo)
+                        quantity_price, _, price = tuple(promo.split(' '))
+                        print('quantity: ', quantity)
+                        print('price: ', price)
+
                         # regexp = quantitySKU for total
                         total += items[sku]["price"]
 
@@ -31,6 +33,6 @@ class CheckoutSolution:
 
 
 c = CheckoutSolution()
-skus = 'AB'
+skus = 'A'
 output = c.checkout(skus)
 print(output)
