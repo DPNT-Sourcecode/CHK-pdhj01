@@ -6,4 +6,4 @@ class HelloSolution:
         if isinstance(friend_name, str):
             return f'Hello {friend_name}'
         else:
-            raise ValueError('Input is not a string')
+            raise TypeError('Input is not a string')
