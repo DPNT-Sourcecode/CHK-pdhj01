@@ -1,8 +1,8 @@
 from solutions.TST import one
 from solutions.CHK.checkout_solution import CheckoutSolution
 
-class 
-class checkout():
-    def test_sum(self):
-        assert one.get() == 1
 
+class TestSum():
+    def test_sum(self):
+        skus = 'A'
+        assert CheckoutSolution.checkout(skus) == 50
