@@ -1,7 +1,8 @@
 from solutions.TST import one
-from solutions.CHK.sum_solution import SumSolution
+from solutions.CHK.checkout_solution import CheckoutSolution
 
-
-class TestSum():
+class 
+class checkout():
     def test_sum(self):
         assert one.get() == 1
+
