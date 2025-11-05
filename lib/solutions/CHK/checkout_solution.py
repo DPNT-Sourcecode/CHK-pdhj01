@@ -29,7 +29,9 @@ class CheckoutSolution:
                         #     print('promo_price: ', promo_price)
                         #     total += promo_price
 
-                return total
+                return 
+        else:
+            return -1
 
 
 
@@ -38,4 +40,5 @@ c = CheckoutSolution()
 skus = 'A'
 output = c.checkout(skus)
 print(output)
+
 
