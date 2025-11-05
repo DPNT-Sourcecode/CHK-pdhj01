@@ -14,16 +14,20 @@ class CheckoutSolution:
         if isinstance(skus, str):
             for sku in skus:
                 if sku in items.keys():
-                    if items[sku][]
-                    print(items[sku])
+                    if items[sku]["promo"] is None:
+                        total += items[sku]["price"]
+                    else:
+                        # regexp = quantitySKU for total
+                        total += items[sku]["price"]
 
+            return total
         else:
-            raise ValueError('Wrong input datatype.')
+            return -1
+            # raise ValueError('Wrong input datatype.')
 
 
 
 c = CheckoutSolution()
-skus = 'B'
-c.checkout(skus)
-
-
+skus = 'A'
+output = c.checkout(skus)
+print(output)
