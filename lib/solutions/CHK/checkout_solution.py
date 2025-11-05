@@ -19,6 +19,7 @@ class CheckoutSolution:
                     else:
                         promo = items[sku]["promo"]
                         quantity_price, _, promo_price = tuple(promo.split(' '))
+                        promo_price = int(promo_price)
                         quantity = [i for i in quantity_price if i.isnumeric()][0]
                         sku = [i for i in quantity_price if i.isalpha()][0]
                         print('promo_price: ', promo_price)
@@ -32,6 +33,6 @@ class CheckoutSolution:
 
 
 c = CheckoutSolution()
-skus = 'A'
+skus = 'ABC'
 output = c.checkout(skus)
 print(output)
