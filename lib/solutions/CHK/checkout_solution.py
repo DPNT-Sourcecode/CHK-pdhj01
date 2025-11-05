@@ -11,16 +11,14 @@ class CheckoutSolution:
                 }
         
         if skus == '' or not isinstance(skus, str):
+            print('Cond 1')
             return -1
         
         else:
-            print('SKUS: ', skus)
+            print('Cond 2')
             for sku in skus:
-                if sku != sku.upper() or sku not in items.keys():
-                    return -1
-                else:
-                    total += items[sku]["price"]
-                    return total
+                total += items[sku]["price"]
+            return total
 
 
 
