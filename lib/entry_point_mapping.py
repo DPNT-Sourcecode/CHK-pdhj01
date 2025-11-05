@@ -32,7 +32,6 @@ class EntryPointMapping:
     # ~~~~~~~~ Single method challenges ~~~~~~
     
     def sum(self, *args):
-        
         return self.sum_solution.compute(*args)
 
     def hello(self, *args):
@@ -98,4 +97,5 @@ class EntryPointMapping:
     # Round 4 & 5
     def waves(self, *args):
         return self.demo_round4n5_solution.waves(*args)
+
 
