@@ -6,4 +6,3 @@ class SumSolution:
             return x + y
         else:
             raise ValueError(f'Invalid inputs, try again. X: {x}, Y: {y}')
-
