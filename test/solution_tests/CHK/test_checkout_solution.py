@@ -4,5 +4,6 @@ from solutions.CHK.checkout_solution import CheckoutSolution
 
 class TestSum():
     def test_sum(self):
-        skus = 'A'
-        assert CheckoutSolution.checkout(skus) == 50
+        checkout = CheckoutSolution()
+        assert checkout.checkout('A') == 50
+
