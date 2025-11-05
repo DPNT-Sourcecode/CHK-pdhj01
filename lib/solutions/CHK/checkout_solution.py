@@ -1,4 +1,4 @@
-import pandas as pd
+import re
 
 class CheckoutSolution:
 
@@ -17,6 +17,9 @@ class CheckoutSolution:
                     if items[sku]["promo"] is None:
                         total += items[sku]["price"]
                     else:
+                        promo = items[sku]["promo"]
+                        pattern = r'()'
+                        match = re.search('', promo)
                         # regexp = quantitySKU for total
                         total += items[sku]["price"]
 
@@ -28,6 +31,6 @@ class CheckoutSolution:
 
 
 c = CheckoutSolution()
-skus = 'A'
+skus = 'AB'
 output = c.checkout(skus)
 print(output)
