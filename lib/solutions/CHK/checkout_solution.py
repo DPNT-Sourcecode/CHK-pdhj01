@@ -13,17 +13,22 @@ class CheckoutSolution:
                 }
         if isinstance(skus, str):
             for sku in skus:
+                
+                print('actual: ', sku)
+                print('actual: ', sku.upper())
                 if sku in items.keys():
-                    if items[sku]["promo"] is None:
-                        total += items[sku]["price"]
-                    else:
-                        promo = items[sku]["promo"]
-                        quantity_price, _, promo_price = tuple(promo.split(' '))
-                        promo_price = int(promo_price)
-                        quantity = [i for i in quantity_price if i.isnumeric()][0]
-                        sku = [i for i in quantity_price if i.isalpha()][0]
-                        print('promo_price: ', promo_price)
-                        total += promo_price
+                    total += items[sku]["price"]
+
+                    # if items[sku]["promo"] is None:
+                    #     total += items[sku]["price"]
+                    # else:
+                    #     promo = items[sku]["promo"]
+                    #     quantity_price, _, promo_price = tuple(promo.split(' '))
+                    #     promo_price = int(promo_price)
+                    #     quantity = [i for i in quantity_price if i.isnumeric()][0]
+                    #     sku = [i for i in quantity_price if i.isalpha()][0]
+                    #     print('promo_price: ', promo_price)
+                    #     total += promo_price
 
             return total
         else:
@@ -33,6 +38,6 @@ class CheckoutSolution:
 
 
 c = CheckoutSolution()
-skus = 'ABC'
+skus = 'a'
 output = c.checkout(skus)
 print(output)
