@@ -13,7 +13,7 @@ class CheckoutSolution:
                 }
         if isinstance(skus, str):
             for sku in skus:
-                if sku != sku.upper() and sku not in items.keys():
+                if sku == '' or sku != sku.upper() or sku not in items.keys():
                     return -1
                 else:
                     total += items[sku]["price"]
@@ -38,3 +38,4 @@ c = CheckoutSolution()
 skus = 'A'
 output = c.checkout(skus)
 print(output)
+
