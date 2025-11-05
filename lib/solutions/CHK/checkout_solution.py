@@ -18,12 +18,11 @@ class CheckoutSolution:
                         total += items[sku]["price"]
                     else:
                         promo = items[sku]["promo"]
-                        quantity_price, _, price = tuple(promo.split(' '))
-                        print('quantity: ', quantity)
-                        print('price: ', price)
-
-                        # regexp = quantitySKU for total
-                        total += items[sku]["price"]
+                        quantity_price, _, promo_price = tuple(promo.split(' '))
+                        quantity = [i for i in quantity_price if i.isnumeric()][0]
+                        sku = [i for i in quantity_price if i.isalpha()][0]
+                        print('promo_price: ', promo_price)
+                        total += promo_price
 
             return total
         else:
