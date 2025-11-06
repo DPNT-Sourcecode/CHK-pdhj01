@@ -19,23 +19,15 @@ class CheckoutSolution:
             for sku, freq in Counter(skus).items():
                 if inventory[sku]["promo"] is None:
                     total += inventory[sku]["price"]
-            print('total: ', total)
+                    
+                else:
+                    promo = inventory[sku]["promo"]
+                    quantity_price, _, promo_price = tuple(promo.split(' '))
+                    quantity = [i for i in quantity_price if i.isnumeric()][0]
+                    sku = [i for i in quantity_price if i.isalpha()][0]
+                    total += promo_price
+    
             return total
-                    # else:
-                    #     promo = items[sku]["promo"]
 
-                    #     quantity_price, _, promo_price = tuple(promo.split(' '))
-                    #     promo_price = int(promo_price)
-                    #     quantity = [i for i in quantity_price if i.isnumeric()][0]
-                    #     sku = [i for i in quantity_price if i.isalpha()][0]
-                    #     # total += promo_price
-
-                    #     # if sku_len >= quantity:
-                    #     #     sku_len
-
-                    #     print('quantity: ', quantity, 'sku: ', sku, 'promo_price', promo_price)
-
-
-            #     total += items[sku]["price"]
 
 
