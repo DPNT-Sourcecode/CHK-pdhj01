@@ -16,28 +16,32 @@ class CheckoutSolution:
             return -1
         
         else:
-            sku_len = len(skus)
+            item_count = Counter(skus)
             for sku in skus:
+                for i, d in item_count.items():
 
-                if items[sku]["promo"] is None:
-                    total += items[sku]["price"]
-                else:
-                    promo = items[sku]["promo"]
+                    if items[sku]["promo"] is None:
+                        total += items[sku]["price"]
+                        
+                    else:
+                        promo = items[sku]["promo"]
 
-                    quantity_price, _, promo_price = tuple(promo.split(' '))
-                    promo_price = int(promo_price)
-                    quantity = [i for i in quantity_price if i.isnumeric()][0]
-                    sku = [i for i in quantity_price if i.isalpha()][0]
-                    # total += promo_price
+                        quantity_price, _, promo_price = tuple(promo.split(' '))
+                        promo_price = int(promo_price)
+                        quantity = [i for i in quantity_price if i.isnumeric()][0]
+                        sku = [i for i in quantity_price if i.isalpha()][0]
+                        # total += promo_price
 
-                    if sku_len >= quantity:
-                        sku_len
+                        # if sku_len >= quantity:
+                        #     sku_len
 
-                    print('quantity: ', quantity, 'sku: ', sku, 'promo_price', promo_price)
+                        print('quantity: ', quantity, 'sku: ', sku, 'promo_price', promo_price)
 
 
-                    total += items[sku]["price"]
-            return total
+            #         total += items[sku]["price"]
+            # return total
+
+
 
 
 
