@@ -52,9 +52,12 @@ class CheckoutSolution:
                 else:
                     # If minimum promotion quantity NOT exceeded
                     min_promo_qty = inventory[sku]['min_promo_qty']
+                    regular_price = inventory[sku]["regular_price"]
+                    promo_price = inventory[sku]["promo_price"]
+
 
                     if sku_freq < min_promo_qty:
-                        total_promo += inventory[promo_sku]["regular_price"]
+                        total_promo += regular_price * sku_freq
 
                     # If minimum promotion quantity exceeded, apply discount
                     else:
@@ -64,14 +67,5 @@ class CheckoutSolution:
             print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
             return total_no_promo + total_promo
-
-
-
-
-
-
-
-
-
 
 
