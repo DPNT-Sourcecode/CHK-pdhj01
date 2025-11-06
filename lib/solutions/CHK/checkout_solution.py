@@ -4,7 +4,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus) -> int:
-        total = 0
+        final_total, total_no_promo, total_promo = 0, 0, 0
         inventory = {
                     'A': {"price": 50, "promo": '3A for 130'},
                     'B': {"price": 30, "promo": '2B for 45'},
@@ -17,11 +17,11 @@ class CheckoutSolution:
         
         else:
             c = Counter(skus)
-
+            final_total = 0
             for sku, sku_freq in c.items():
                 sku_freq = int(sku_freq)
                 if inventory[sku]["promo"] is None:
-                    total += inventory[sku]["price"]
+                    total_no_promo += inventory[sku]["price"]
                     
                 else:
                     # Get regular price and promotion from inventory lookup
@@ -42,10 +42,13 @@ class CheckoutSolution:
                     # If minimum promotion quantity exceeded, apply discount
                     else:
                         multiplier, remainder = divmod(sku_freq, min_promo_qty)
-                        val = (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
-                        total += val
 
+                        total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
+
+                print('total', total)
+                final_total = total_no_promo + total_promo
             return total
+
 
 
 
