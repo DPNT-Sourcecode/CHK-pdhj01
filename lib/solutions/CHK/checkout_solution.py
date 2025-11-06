@@ -4,6 +4,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus) -> int:
+        input = skus
         total_no_promo, total_promo = 0, 0
         inventory = {
                     'A': {"price": 50, "promo": '3A for 130'},
@@ -23,7 +24,6 @@ class CheckoutSolution:
 
                 # No promo, check if a given SKU has a promo
                 if inventory[sku]["promo"] is None:
-                    print('No promo cond.')
                     total_no_promo += inventory[sku]["price"] * sku_freq
 
                     
@@ -48,8 +48,10 @@ class CheckoutSolution:
                         multiplier, remainder = divmod(sku_freq, min_promo_qty)
 
                         total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
-            print('total_no_promo', total_no_promo)
+            print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
+
             return total_no_promo + total_promo
+
 
 
 
