@@ -20,6 +20,7 @@ class CheckoutSolution:
             for sku, sku_freq in c.items():
                 sku_freq = int(sku_freq)
 
+                # No promo, check if a given SKU has a promo
                 if inventory[sku]["promo"] is None:
                     total_no_promo += inventory[sku]["price"]
                     
@@ -47,6 +48,7 @@ class CheckoutSolution:
 
             print('total_no_promo', total_no_promo)
             return total_no_promo + total_promo
+
 
 
 
