@@ -71,4 +71,3 @@ class CheckoutSolution:
             return total_no_promo + total_promo
 
 
-
