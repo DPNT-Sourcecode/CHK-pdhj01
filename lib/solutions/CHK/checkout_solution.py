@@ -9,13 +9,16 @@ class CheckoutSolution:
                     'C': {"price": 20, "promo": None},
                     'D': {"price": 15, "promo": None}
                 }
-        if skus is not isinstance(skus, str) or skus.upper() != skus or skus == '':
-            print('exception')
+
+        
+        if not isinstance(skus, str) or skus.upper() != skus or skus == '':
+            print('exception 2')
             return -1
         
         else:
             for sku in skus:
-                print('cond')
+                print('cond', 'skus:', skus)
+                
                 total += items[sku]["price"]
                 print(total)
                 return total
@@ -23,7 +26,7 @@ class CheckoutSolution:
 
 
 c = CheckoutSolution()
-c.checkout('A')
+c.checkout('AB')
 
 # if items[sku]["promo"] is None:
 #     total += items[sku]["price"]
