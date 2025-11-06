@@ -10,13 +10,15 @@ class CheckoutSolution:
                     'D': {"price": 15, "promo": None}
                 }
 
-        if not isinstance(skus, str) or skus.upper() != skus or skus == '':
+        if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
             return -1
         
         else:
-            for sku in skus:
-                total += items[sku]["price"]
-            return total
+            if skus.isalpha():
+                print('is alpha')
+                for sku in skus:
+                    total += items[sku]["price"]
+                return total
 
 # if items[sku]["promo"] is None:
 #     total += items[sku]["price"]
