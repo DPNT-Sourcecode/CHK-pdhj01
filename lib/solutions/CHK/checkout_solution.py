@@ -14,22 +14,27 @@ class CheckoutSolution:
             return -1
         
         else:
-            if skus.isalpha():
-                print('is alpha')
-                for sku in skus:
-                    total += items[sku]["price"]
-                return total
+            for sku in skus:
 
-# if items[sku]["promo"] is None:
-#     total += items[sku]["price"]
-# else:
-#     promo = items[sku]["promo"]
-#     quantity_price, _, promo_price = tuple(promo.split(' '))
-#     promo_price = int(promo_price)
-#     quantity = [i for i in quantity_price if i.isnumeric()][0]
-#     sku = [i for i in quantity_price if i.isalpha()][0]
-#     print('promo_price: ', promo_price)
-#     total += promo_price
+                if items[sku]["promo"] is None:
+                    total += items[sku]["price"]
+                else:
+                    promo = items[sku]["promo"]
+                    quantity_price, _, promo_price = tuple(promo.split(' '))
+                    promo_price = int(promo_price)
+                    quantity = [i for i in quantity_price if i.isnumeric()][0]
+                    sku = [i for i in quantity_price if i.isalpha()][0]
+                    # total += promo_price
+
+                    print('promo', promo,
+                        'quantity: ', quantity,
+                        'sku: ', sku
+                    )
+
+
+                    total += items[sku]["price"]
+            return total
+
 
 
 
