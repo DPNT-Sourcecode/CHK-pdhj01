@@ -19,6 +19,7 @@ class CheckoutSolution:
             c = Counter(skus)
             for sku, sku_freq in c.items():
                 sku_freq = int(sku_freq)
+
                 if inventory[sku]["promo"] is None:
                     total_no_promo += inventory[sku]["price"]
                     
@@ -45,8 +46,7 @@ class CheckoutSolution:
                         total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
 
             print('total_no_promo', total_no_promo)
-            print('total_promo', total_promo)
-
             return total_no_promo + total_promo
+
 
 
