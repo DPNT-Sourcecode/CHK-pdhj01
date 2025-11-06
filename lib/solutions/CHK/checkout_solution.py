@@ -23,17 +23,21 @@ class CheckoutSolution:
                 else:
                     promo = inventory[sku]["promo"]
                     promo_qty_sku, _, promo_rate = tuple(promo.split(' '))
-                    promo_qty = [i for i in promo_qty_sku if i.isnumeric()][0]
-                    promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
-                    print('| promo_qty', promo_qty, '| promo_rate', promo_rate, '| promo_sku', promo_sku)
+                    promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+                    promo_sku = int([i for i in promo_qty_sku if i.isalpha()][0])
+                    # print('| promo_qty', promo_qty, '| promo_rate', promo_rate, '| promo_sku', promo_sku)
+                    # print('sku_freq ', sku_freq, 'type(sku_freq)', type(sku_freq))
+                    # print('promo_qty ', promo_qty, 'type(promo_qty)', type(promo_qty))
 
-                    if sku_freq >= promo_qty:
-                        
+                    # if sku_freq >= promo_qty:
+                    #     a, b = divmod(sku_freq, promo_qty)
+                    #     print(a, b)
                 
                     total += inventory[sku]["price"]
 
 
             return total
+
 
 
 
