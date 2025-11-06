@@ -13,11 +13,15 @@ class CheckoutSolution:
                     'C': {"regular_price": 20, "promo": None},
                     'D': {"regular_price": 15, "promo": None}
                 }
-        
+        # Parse and build the inventory lookup
         for sku, details in inventory.items():
             promo = inventory[sku]["promo"]
-            
-            if promo is not None:
+            if promo is None:
+                inventory[sku]['min_promo_qty'] = 0
+                inventory[sku]['promo_sku'] = 0
+                inventory[sku]['promo_price'] = 0
+
+            else:
                 # Split promotion into three parts
                 promo_qty_sku, _, promo_price = tuple(promo.split(' '))
 
@@ -29,47 +33,39 @@ class CheckoutSolution:
                 inventory[sku]['promo_sku'] = promo_sku
                 inventory[sku]['promo_price'] = promo_price
 
-
-        pprint(inventory)
-
-        # if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
-        #     return -1
+        # Handle non-alpha values and illegal characters
+        if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
+            return -1
         
-        # else:
-        #     c = Counter(skus)
-        #     for sku, sku_freq in c.items():
-        #         sku_freq = int(sku_freq)
+        else:
+            # Build a counter with all the SKUs bought and their quantities
+            c = Counter(skus)
+
+            # Iterate through one item and its quantity at a time
+            for sku, sku_freq in c.items():
+                sku_freq = int(sku_freq)
 
 
-        #         # No promo, check if a given SKU has a promo
-        #         if inventory[sku]["promo"] is None:
-        #             total_no_promo += inventory[sku]["price"] * sku_freq
+                # Begin with non-promos
+                if inventory[sku]["promo"] is None:
+                    total_no_promo += inventory[sku]["price"] * sku_freq
 
                     
-        #         else:
-        #             # Get regular price and promotion from inventory lookup
-        #             regular_price = inventory[sku]["price"]
-        #             promo = inventory[sku]["promo"]
+            #     else:
 
-        #             # Split promotion into three parts
-        #             promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+            #         # If minimum promotion quantity NOT exceeded
+            #         if sku_freq < min_promo_qty:
+            #             total_promo += inventory[promo_sku]["price"]
 
-        #             # Extract promo quantity and sku
-        #             min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-        #             promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+            #         # If minimum promotion quantity exceeded, apply discount
+            #         else:
+            #             multiplier, remainder = divmod(sku_freq, min_promo_qty)
 
-        #             # If minimum promotion quantity NOT exceeded
-        #             if sku_freq < min_promo_qty:
-        #                 total_promo += inventory[promo_sku]["price"]
+            #             total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
+            # print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
-        #             # If minimum promotion quantity exceeded, apply discount
-        #             else:
-        #                 multiplier, remainder = divmod(sku_freq, min_promo_qty)
+            return total_no_promo + total_promo
 
-        #                 total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
-        #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
-
-        #     return total_no_promo + total_promo
 
 
 
