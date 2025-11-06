@@ -16,9 +16,10 @@ class CheckoutSolution:
             return -1
         
         else:
-            for sku, sku_freq in Counter(skus).items():
+            c = Counter(skus)
+
+            for sku, sku_freq in c.items():
                 sku_freq = int(sku_freq)
-                print('sku_freq', sku_freq)
                 if inventory[sku]["promo"] is None:
                     total += inventory[sku]["price"]
                     
@@ -34,16 +35,17 @@ class CheckoutSolution:
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                    # print('| min_promo_qty', min_promo_qty, '| promo_price', promo_price, '| promo_sku', promo_sku, '| promo_sku', promo_sku)
-                    print('sku_freq', sku_freq, 'min_promo_qty', min_promo_qty)
-                    # If minimum promotion quantity exceeded, apply discount
-                    if sku_freq >= min_promo_qty:
-                        print('promo condition met')
-                        multiplier, remainder = divmod(sku_freq, min_promo_qty)
-                        total = (multiplier * promo_price) + (remainder * regular_price)
+                    # If minimum promotion quantity NOT exceeded
+                    if sku_freq < min_promo_qty:
+                        total += inventory[sku]["price"]
 
-                print('total', total)
+                    # If minimum promotion quantity exceeded, apply discount
+                    else:
+                        multiplier, remainder = divmod(sku_freq, min_promo_qty)
+                        total += (multiplier * promo_price) + (remainder * regular_price)
+
             return total
+
 
 
 

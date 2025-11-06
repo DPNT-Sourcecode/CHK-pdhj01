@@ -14,11 +14,12 @@ class TestCheckout():
         assert checkout.checkout('AB') == 80
 
 
-        # assert checkout.checkout('-') == -1
-        # assert checkout.checkout('C') == 20
+        assert checkout.checkout('-') == -1
+        assert checkout.checkout('C') == 20
         assert checkout.checkout('AAAA') == 180
         # assert checkout.checkout('AAABA') == -1
         
+
 
 
 
