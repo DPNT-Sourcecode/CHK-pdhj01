@@ -9,29 +9,21 @@ class CheckoutSolution:
                     'C': {"price": 20, "promo": None},
                     'D': {"price": 15, "promo": None}
                 }
-        if skus.upper() != skus or skus == '':
-            print(-1)
+        if skus is not isinstance(skus, str) or skus.upper() != skus or skus == '':
+            print('exception')
             return -1
-        else:
-            pass
-        # if skus == '' or not isinstance(skus, str) or sku == sku.upper():
-        #     return -1
         
-        # else:
-        #     for sku in skus:
-
-        #         if sku not in items.keys():
-        #             return -1
-        #         else:
-        #             print('cond')
-        #             total += items[sku]["price"]
-        #             print(total)
-        #             return total
+        else:
+            for sku in skus:
+                print('cond')
+                total += items[sku]["price"]
+                print(total)
+                return total
 
 
 
 c = CheckoutSolution()
-c.checkout('AB')
+c.checkout('A')
 
 # if items[sku]["promo"] is None:
 #     total += items[sku]["price"]
@@ -43,4 +35,5 @@ c.checkout('AB')
 #     sku = [i for i in quantity_price if i.isalpha()][0]
 #     print('promo_price: ', promo_price)
 #     total += promo_price
+
 
