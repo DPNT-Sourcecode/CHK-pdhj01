@@ -9,19 +9,24 @@ class CheckoutSolution:
                     'C': {"price": 20, "promo": None},
                     'D': {"price": 15, "promo": None}
                 }
-        if skus == '' or not isinstance(skus, str):
+        if skus.upper() != skus or skus == '':
+            print(-1)
             return -1
-        
         else:
-            for sku in skus:
+            pass
+        # if skus == '' or not isinstance(skus, str) or sku == sku.upper():
+        #     return -1
+        
+        # else:
+        #     for sku in skus:
 
-                if sku != sku.upper() or sku not in items.keys():
-                    return -1
-                else:
-                    print('cond')
-                    total += items[sku]["price"]
-                    print(total)
-                    return total
+        #         if sku not in items.keys():
+        #             return -1
+        #         else:
+        #             print('cond')
+        #             total += items[sku]["price"]
+        #             print(total)
+        #             return total
 
 
 

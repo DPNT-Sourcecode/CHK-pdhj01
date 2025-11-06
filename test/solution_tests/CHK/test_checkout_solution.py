@@ -4,8 +4,8 @@ from solutions.CHK.checkout_solution import CheckoutSolution
 class TestCheckout():
     def test_checkout(self):
         checkout = CheckoutSolution()
-        # assert checkout.checkout('A') == 50
-        # assert checkout.checkout('B') == 30
+        assert checkout.checkout('a') == 50
+        assert checkout.checkout('B') == 30
         # assert checkout.checkout('C') == 20
         # assert checkout.checkout('D') == 15
 
@@ -13,4 +13,4 @@ class TestCheckout():
 
         # assert checkout.checkout('') == -1
 
-        assert checkout.checkout('A') == 80
+        # assert checkout.checkout('AB') == 80
