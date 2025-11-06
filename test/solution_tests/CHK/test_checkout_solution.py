@@ -27,5 +27,6 @@ class TestCheckout():
         assert checkout.checkout('AAABBCC') == 130 + 45 + 2*20 #215
 
         # assert checkout.checkout('AABB') == 215
-        # assert checkout.checkout('ABCDABCD') == 215
+        assert checkout.checkout('ABCDABCD') == 215
         
+
