@@ -14,4 +14,3 @@ class TestCheckout():
         # assert checkout.checkout('') == -1
 
         assert checkout.checkout('A') == 80
-

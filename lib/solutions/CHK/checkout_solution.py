@@ -39,4 +39,3 @@ c.checkout('AB')
 #     print('promo_price: ', promo_price)
 #     total += promo_price
 
-
