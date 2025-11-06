@@ -7,24 +7,24 @@ class CheckoutSolution:
         input = skus
         total_no_promo, total_promo = 0, 0
         inventory = {
-                    'A': {"price": 50, "promo": '3A for 130'},
-                    'B': {"price": 30, "promo": '2B for 45'},
-                    'C': {"price": 20, "promo": None},
-                    'D': {"price": 15, "promo": None}
+                    'A': {"regular_price": 50, "promo": '3A for 130'},
+                    'B': {"regular_price": 30, "promo": '2B for 45'},
+                    'C': {"regular_price": 20, "promo": None},
+                    'D': {"regular_price": 15, "promo": None}
                 }
         
         for sku, details in inventory.items():
-            regular_price = inventory[sku]["price"]
             promo = inventory[sku]["promo"]
 
             # Split promotion into three parts
             promo_qty_sku, _, promo_price = tuple(promo.split(' '))
 
-            # Extract promo quantity and sku
-            min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-            promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+            # # Extract promo quantity and sku
+            # min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+            # promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-        print()
+            print(promo)
+
 
         # if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
         #     return -1
@@ -64,6 +64,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
