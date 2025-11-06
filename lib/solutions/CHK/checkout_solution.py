@@ -5,7 +5,7 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus) -> int:
         total = 0
-        items = {
+        inventory = {
                     'A': {"price": 50, "promo": '3A for 130'},
                     'B': {"price": 30, "promo": '2B for 45'},
                     'C': {"price": 20, "promo": None},
@@ -16,14 +16,11 @@ class CheckoutSolution:
             return -1
         
         else:
-            for i, d in Counter(skus).items():
-                if i in items:
-                    print(items[i])
-
-
-                    # if items[sku]["promo"] is None:
-                    #     total += items[sku]["price"]
-                        
+            for sku, freq in Counter(skus).items():
+                if inventory[sku]["promo"] is None:
+                    total += inventory[sku]["price"]
+            print('total: ', total)
+            return total
                     # else:
                     #     promo = items[sku]["promo"]
 
@@ -40,12 +37,5 @@ class CheckoutSolution:
 
 
             #     total += items[sku]["price"]
-            # return total
-
-
-
-
-
-
 
 
