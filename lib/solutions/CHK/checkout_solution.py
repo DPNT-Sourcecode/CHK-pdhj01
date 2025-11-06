@@ -34,7 +34,9 @@ class CheckoutSolution:
                 inventory[sku]['promo_price'] = promo_price
 
         # Handle non-alpha values and illegal characters
-        if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
+        if skus == '':
+            return 0
+        elif not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
             return -1
         
         else:
@@ -67,5 +69,6 @@ class CheckoutSolution:
             print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
             return total_no_promo + total_promo
+
 
 
