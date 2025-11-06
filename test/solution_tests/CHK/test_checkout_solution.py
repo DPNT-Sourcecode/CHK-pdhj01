@@ -18,13 +18,10 @@ class TestCheckout():
         assert checkout.checkout('C') == 20
         assert checkout.checkout('AAAA') == 180
         assert checkout.checkout('AAABA') == 210
+        assert checkout.checkout('AAABB') == 130 + 45
+        assert checkout.checkout('AAABBB') == 205
+        assert checkout.checkout('AAABBC') == 130 + 45 + 20
+        assert checkout.checkout('AAABBCC') == 130 + 45 + 2*20
 
         # assert checkout.checkout('ABCDABCD') == 215
         
-
-
-
-
-
-
-
