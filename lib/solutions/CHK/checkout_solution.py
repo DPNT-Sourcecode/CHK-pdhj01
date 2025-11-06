@@ -1,4 +1,5 @@
 from collections import Counter
+from pprint import pprint
 
 class CheckoutSolution:
 
@@ -15,16 +16,21 @@ class CheckoutSolution:
         
         for sku, details in inventory.items():
             promo = inventory[sku]["promo"]
+            
+            if promo is not None:
+                # Split promotion into three parts
+                promo_qty_sku, _, promo_price = tuple(promo.split(' '))
 
-            # Split promotion into three parts
-            promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+                # Extract promo quantity and sku
+                min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+                promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-            # # Extract promo quantity and sku
-            # min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-            # promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+                inventory[sku]['min_promo_qty'] = min_promo_qty
+                inventory[sku]['promo_sku'] = promo_sku
+                inventory[sku]['promo_price'] = promo_price
 
-            print(promo)
 
+        pprint(inventory)
 
         # if not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
         #     return -1
@@ -64,6 +70,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
