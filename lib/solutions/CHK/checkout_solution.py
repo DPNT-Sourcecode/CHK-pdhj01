@@ -42,9 +42,11 @@ class CheckoutSolution:
                     # If minimum promotion quantity exceeded, apply discount
                     else:
                         multiplier, remainder = divmod(sku_freq, min_promo_qty)
-                        total += (multiplier * promo_price) + (remainder * regular_price)
+                        val = (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
+                        total += val
 
             return total
+
 
 
 
