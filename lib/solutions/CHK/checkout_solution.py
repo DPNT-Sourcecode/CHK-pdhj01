@@ -8,8 +8,7 @@ class CheckoutSolution:
         input = skus
         total_no_promo, total_promo = 0, 0
         inventory = {
-                    # 'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
-                    'A': {"regular_price": 50, "promo": '3A for 130'},
+                    'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
                     'B': {"regular_price": 30, "promo": '2B for 45'},
                     'C': {"regular_price": 20, "promo": None},
                     'D': {"regular_price": 15, "promo": None},
@@ -21,14 +20,13 @@ class CheckoutSolution:
             promo_list = []
 
             promo = inventory[sku]["promo"]
-            if promo is None:
-                inventory[sku]['min_promo_qty'] = 0
-                inventory[sku]['promo_sku'] = 0
-                inventory[sku]['promo_price'] = 0
-            
-            elif ',' in promo:
-                promos = [i.strip() for i in promo.split(',')]
-                print('promos', promos)
+            print('promo', promo)
+            if ',' in promo:
+                promo
+            else:
+                promo_list.append()
+            # promos = [i.strip() for i in promo.split(',')]
+       
 
             # else:
             #     if promos:
@@ -67,7 +65,7 @@ class CheckoutSolution:
             #                 'promo_price':promo_price
             #             })  
             #         inventory[sku]['promo'] = promo_list
-        pprint(inventory)
+
 
         # # Handle non-alpha values and illegal characters
         # if skus == '':
@@ -105,6 +103,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
