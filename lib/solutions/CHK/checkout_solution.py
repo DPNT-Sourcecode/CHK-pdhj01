@@ -15,7 +15,7 @@ class CheckoutSolution:
                     'E': {"regular_price": 40, "promo": '2E get one B free'}
                 }
         # Parse and build the inventory lookup
-        pprint(inventory)
+
         for sku, _ in inventory.items():
             promo_list = []
 
@@ -26,6 +26,7 @@ class CheckoutSolution:
                 inventory[sku]['promo_price'] = 0
             
             elif ',' in promo:
+                print('multi-discount sku: ', sku)
                 promos = [i.strip() for i in promo.split(',')]
 
             else:
@@ -37,7 +38,7 @@ class CheckoutSolution:
                         # Extract promo quantity and sku
                         min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                         promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
-                        print("min_promo_qty:, ", min_promo_qty, "promo_sku:, ", promo_sku, "promo_price:, ", promo_price)
+
                         inventory[sku]['min_promo_qty'] = min_promo_qty
                         inventory[sku]['promo_sku'] = promo_sku
                         inventory[sku]['promo_price'] = promo_price
@@ -48,7 +49,23 @@ class CheckoutSolution:
                                 'promo_price':promo_price
                             })  
                     inventory[sku]['promo'] = promo_list
-            
+                else:
+                    promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+
+                    # Extract promo quantity and sku
+                    min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+                    promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+
+                    inventory[sku]['min_promo_qty'] = min_promo_qty
+                    inventory[sku]['promo_sku'] = promo_sku
+                    inventory[sku]['promo_price'] = promo_price
+
+                    promo_list.append({
+                            'min_promo_qty':min_promo_qty,
+                            'promo_sku':promo_sku,
+                            'promo_price':promo_price
+                        })  
+                    inventory[sku]['promo'] = promo_list
         pprint(inventory)
 
         # # Handle non-alpha values and illegal characters
@@ -87,5 +104,6 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
