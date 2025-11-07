@@ -24,26 +24,24 @@ class CheckoutSolution:
                 inventory[sku]['promo_price'] = 0
             
             elif ',' in promo:
-                promos = promo.split(',')
+                promos = [i.strip() for i in promo.split(',')]
 
                     
 
             else:
+                promo_list = []
                 if promos:
-
-                    largest_promo = 0
                     for promo in promos:
-                        print('promos: ', promos)
                         # Split promotion into three parts
-                        # promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+                        promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+                        promo_price[]
+                        # Extract promo quantity and sku
+                        min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+                        promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                #         # Extract promo quantity and sku
-                #         min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-                #         promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
-
-                #         inventory[sku]['min_promo_qty'] = min_promo_qty
-                #         inventory[sku]['promo_sku'] = promo_sku
-                #         inventory[sku]['promo_price'] = promo_price
+                        inventory[sku]['min_promo_qty'] = min_promo_qty
+                        inventory[sku]['promo_sku'] = promo_sku
+                        inventory[sku]['promo_price'] = promo_price
 
         # # Handle non-alpha values and illegal characters
         # if skus == '':
@@ -81,6 +79,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
