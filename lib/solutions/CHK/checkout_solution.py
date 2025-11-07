@@ -22,6 +22,7 @@ class CheckoutSolution:
             print('sku:', sku, 'promo', promo)
             
             if promo and ',' in promo:
+                print("promo exists")
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
                 inventory[sku]["promo"] = promo_list
@@ -108,6 +109,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
