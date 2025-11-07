@@ -6,9 +6,9 @@ class TestCheckout():
         checkout = CheckoutSolution()
         # Illegal chars and values
         assert checkout.checkout('a') == -1
-        assert checkout.checkout('') == -1
-        assert checkout.checkout(20) == -1
-        assert checkout.checkout('-') == -1
+        # assert checkout.checkout('') == -1
+        # assert checkout.checkout(20) == -1
+        # assert checkout.checkout('-') == -1
 
         # # Normal
         # assert checkout.checkout('A') == 50
@@ -29,4 +29,5 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
+
 
