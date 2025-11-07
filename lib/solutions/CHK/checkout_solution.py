@@ -8,7 +8,8 @@ class CheckoutSolution:
         input = skus
         total_no_promo, total_promo = 0, 0
         inventory = {
-                    'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
+                    # 'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
+                    'A': {"regular_price": 50, "promo": '3A for 130'},
                     'B': {"regular_price": 30, "promo": '2B for 45'},
                     'C': {"regular_price": 20, "promo": None},
                     'D': {"regular_price": 15, "promo": None},
@@ -26,46 +27,46 @@ class CheckoutSolution:
                 inventory[sku]['promo_price'] = 0
             
             elif ',' in promo:
-                print('multi-discount sku: ', sku)
                 promos = [i.strip() for i in promo.split(',')]
+                print('promos', promos)
 
-            else:
-                if promos:
-                    for promo in promos:
-                        # Split promotion into three parts
-                        promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+            # else:
+            #     if promos:
+            #         for promo in promos:
+            #             # Split promotion into three parts
+            #             promo_qty_sku, _, promo_price = tuple(promo.split(' '))
 
-                        # Extract promo quantity and sku
-                        min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-                        promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+            #             # Extract promo quantity and sku
+            #             min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+            #             promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                        inventory[sku]['min_promo_qty'] = min_promo_qty
-                        inventory[sku]['promo_sku'] = promo_sku
-                        inventory[sku]['promo_price'] = promo_price
+            #             inventory[sku]['min_promo_qty'] = min_promo_qty
+            #             inventory[sku]['promo_sku'] = promo_sku
+            #             inventory[sku]['promo_price'] = promo_price
 
-                        promo_list.append({
-                                'min_promo_qty':min_promo_qty,
-                                'promo_sku':promo_sku,
-                                'promo_price':promo_price
-                            })  
-                    inventory[sku]['promo'] = promo_list
-                else:
-                    promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+            #             promo_list.append({
+            #                     'min_promo_qty':min_promo_qty,
+            #                     'promo_sku':promo_sku,
+            #                     'promo_price':promo_price
+            #                 })  
+            #         inventory[sku]['promo'] = promo_list
+            #     else:
+            #         promo_qty_sku, _, promo_price = tuple(promo.split(' '))
 
-                    # Extract promo quantity and sku
-                    min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-                    promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
+            #         # Extract promo quantity and sku
+            #         min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+            #         promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                    inventory[sku]['min_promo_qty'] = min_promo_qty
-                    inventory[sku]['promo_sku'] = promo_sku
-                    inventory[sku]['promo_price'] = promo_price
+            #         inventory[sku]['min_promo_qty'] = min_promo_qty
+            #         inventory[sku]['promo_sku'] = promo_sku
+            #         inventory[sku]['promo_price'] = promo_price
 
-                    promo_list.append({
-                            'min_promo_qty':min_promo_qty,
-                            'promo_sku':promo_sku,
-                            'promo_price':promo_price
-                        })  
-                    inventory[sku]['promo'] = promo_list
+            #         promo_list.append({
+            #                 'min_promo_qty':min_promo_qty,
+            #                 'promo_sku':promo_sku,
+            #                 'promo_price':promo_price
+            #             })  
+            #         inventory[sku]['promo'] = promo_list
         pprint(inventory)
 
         # # Handle non-alpha values and illegal characters
@@ -104,6 +105,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
