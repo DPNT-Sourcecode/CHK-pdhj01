@@ -18,15 +18,15 @@ class CheckoutSolution:
 
         for sku, _ in inventory.items():
             promo_list = []
-
             promo = inventory[sku]["promo"]
-            print('promo', promo)
+
             if ',' in promo:
-                promo
+                promos = [i.strip() for i in promo.split(',')]
+                promo_list.extend(promos)
             else:
-                promo_list.append()
-            # promos = [i.strip() for i in promo.split(',')]
-       
+                promo_list.extend([])
+
+            print(promo_list)
 
             # else:
             #     if promos:
@@ -103,6 +103,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
