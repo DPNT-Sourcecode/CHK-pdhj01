@@ -12,11 +12,11 @@ class CheckoutSolution:
                     'B': {"regular_price": 30, "promo": '2B for 45'},
                     'C': {"regular_price": 20, "promo": None},
                     'D': {"regular_price": 15, "promo": None},
-                    'E': {"regular_price": 40, "promo": "2E get one B free"}
+                    'E': {"regular_price": 40, "promo": '2E get one B free'}
                 }
         # Parse and build the inventory lookup
         pprint(inventory)
-        for sku, details in inventory.items():
+        for sku, _ in inventory.items():
             promo_list = []
 
             promo = inventory[sku]["promo"]
@@ -48,7 +48,7 @@ class CheckoutSolution:
                                 'promo_price':promo_price
                             })  
                     inventory[sku]['promo'] = promo_list
-
+            
         pprint(inventory)
 
         # # Handle non-alpha values and illegal characters
@@ -87,13 +87,5 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
-
-
-
-
-
-
-
-
 
 
