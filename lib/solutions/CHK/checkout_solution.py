@@ -29,6 +29,7 @@ class CheckoutSolution:
         for sku, _ in inventory.items():
             # if promo, 
             promo_list = []
+            promo_dict = {}
             promo = inventory[sku]["promo"]
             discount_type = 'no_discount'
             min_promo_qtys = []
@@ -60,6 +61,12 @@ class CheckoutSolution:
 
                     min_promo_qtys.append(min_promo_qty)
                     promo_list[i] = {
+                            'min_promo_qty':min_promo_qty,
+                            'promo_sku':promo_sku,
+                            'promo_price':promo_price,
+                            'free_sku': free_sku, 
+                        }
+                    promo_dict[min_promo_qty]                     promo_list[i] = {
                             'min_promo_qty':min_promo_qty,
                             'promo_sku':promo_sku,
                             'promo_price':promo_price,
@@ -98,17 +105,17 @@ class CheckoutSolution:
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
 
 
-            # If bulk discount
-            remaining_items = skus[sku]
-            if discount_type == 'bulk':
-                for min_qty in inventory[sku]["sorted_min_quantities"]:
+            # # If bulk discount
+            # remaining_items = skus[sku]
+            # if discount_type == 'bulk':
+            #     for min_qty in inventory[sku]["sorted_min_quantities"]:
 
-                    quotient, remainder = divmod(remaining_items, min_qty)
-                    total += 
-                    # print('discounted_groups, undiscounted_groups: ', discounted_groups, undiscounted_groups)
+            #         quotient, remainder = divmod(remaining_items, min_qty)
+            #         total += promos[promo_price]
+            #         # print('discounted_groups, undiscounted_groups: ', discounted_groups, undiscounted_groups)
 
 
-                print('skus[sku]: ', skus[sku])
+            #     print('skus[sku]: ', skus[sku])
 
             #             # discounted_price = most_favorable * bulk_discounts
 
