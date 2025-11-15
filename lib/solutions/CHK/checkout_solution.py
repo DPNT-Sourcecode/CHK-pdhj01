@@ -105,23 +105,9 @@ class CheckoutSolution:
 
                     quotient, _ = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
-                    print("remaining_items", remaining_items)
-                    total += promos[promo_price]
+                    print("promos[min_qty]['promo_price']", promos[min_qty]['promo_price'], quotient)
+                    # total_cost += promos[min_qty]['promo_price'] * quotient
 
-
-            #     print('skus[sku]: ', skus[sku])
-
-            #             # discounted_price = most_favorable * bulk_discounts
-
-            #     #         bulk_discounts, undiscounted_items = divmod(total_skus, most_favorable)
-            #     #         print('bulk_discounts, undiscounted_items', bulk_discounts, undiscounted_items)
-                
-            #     # undiscounted_price = inventory[sku]["regular_price"] * undiscounted_items
-
-            #     # total_cost += discounted_price + undiscounted_price
-            # if max_discounted_items == 0:
-            #     total_cost += inventory[sku]["regular_price"] * skus[sku]
-            #     print('max_discounted_items:', max_discounted_items)
 
 
             # # If buy X get Y free
@@ -135,6 +121,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
