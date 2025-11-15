@@ -114,13 +114,20 @@ class CheckoutSolution:
             # If buy X get Y free
             else:
                 print(' get_free')
-                # for promo in promos:
-                    # discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                    # print('discounts, remainder: ', discounts, remainder)
+
+                for min_qty in inventory[sku]["sorted_min_quantities"]:
+                    quotient, remainder = divmod(remaining_items, min_qty)
+                    remaining_items -= quotient * min_qty
+                    total_cost += float(promos[min_qty]['promo_price']) * quotient
+                    print('remainder', remainder)
+        
+                # total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+
 
         print('total_cost: ', total_cost)
         return total_cost
     
+
 
 
 
