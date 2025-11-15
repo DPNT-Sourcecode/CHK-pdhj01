@@ -93,12 +93,11 @@ class CheckoutSolution:
             
             # If buy X get Y free
             elif discount_type == 'get_free':
-                print(' get_free')
-                for promo in promos:
-                    free_sku = promo["free_sku"]
-                    print('total occurences of same item: ',  skus[sku])
-                    # free_items, regular_items = skus[sku] promo["min_promo_qty"]
-                    # print('promo: ', promo)
+                print('remainder;', 7%3)
+                # print(' get_free')
+                # for promo in promos:
+                #     free_items, regular_items = skus[sku] % promo["min_promo_qty"]
+                #     print('free_items, regular_items: ', free_items, regular_items)
 
                 # free_skus = promo["free_sku"]
                 # skus[sku] = 
@@ -109,5 +108,6 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
