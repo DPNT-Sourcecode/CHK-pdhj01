@@ -36,9 +36,15 @@ class CheckoutSolution:
 
                 # If an SKU contains more than one promotion, parse them individually
                 for promo_item in promo_list:
-                    if 
-                    # promo_qty_sku, _, promo_price = tuple(promo.split(' '))
-                    print('promo_item', promo_item)
+                    # Bulk discount
+                    if 'for' in promo_item:
+                        promo_qty_sku, _, promo_price = tuple(promo_item.split(' '))
+                        min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+
+                    # Buy X get Y free 
+                    else:
+                        promo_qty_sku, _, _, _, promo_price = tuple(promo.split(' '))
+                        print('promo_qty_sku, promo_price: ', promo_qty_sku, promo_price)
 
             else:
                 promo_list.extend('')
@@ -57,7 +63,7 @@ class CheckoutSolution:
 
 
         #                 # Extract promo quantity and sku
-        #                 min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
+
         #                 promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
         #                 inventory[sku]['min_promo_qty'] = min_promo_qty
@@ -120,6 +126,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
