@@ -15,11 +15,11 @@ class TestCheckout():
 
         # # Regular Price Only
         assert checkout.checkout('C') == 20
-        # assert checkout.checkout('D') == 15
-        # assert checkout.checkout('CD') == 15 + 20
+        assert checkout.checkout('D') == 15
+        assert checkout.checkout('CD') == 15 + 20
 
         # promos and regulars
-        # assert checkout.checkout('A') == 50
+        assert checkout.checkout('A') == 50
         # assert checkout.checkout('AA') == 100
         # assert checkout.checkout('AAC') == 120
         # assert checkout.checkout('AACC') == 140
@@ -39,5 +39,6 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
+
 
 
