@@ -76,7 +76,7 @@ class CheckoutSolution:
             
             # Mark discount type at SKU Level
             inventory[sku]["discount_type"] = discount_type
-            inventory[sku]["sorted_min_quantities"] = list(set(min_promo_qtys))
+            inventory[sku]["sorted_min_quantities"] = sorted(min_promo_qtys, reverse=True)
             inventory[sku]["promo"] = promo_dict
         # Use a counter to apply discounts
         total_cost = 0
@@ -102,13 +102,11 @@ class CheckoutSolution:
             remaining_items = skus[sku]
             if discount_type == 'bulk':
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
-                    while remaining_items > 0:
-                        quotient, _ = divmod(remaining_items, min_qty)
-                        print('promos[min_qty]', promos[min_qty])
-                        total += promos[promo_price]
 
-                        remaining_items += quotient * min_qty
-                        print('remaining_items: ', remaining_items)
+                    quotient, _ = divmod(remaining_items, min_qty)
+                    remaining_items -= quotient * min_qty
+                    print("remaining_items", remaining_items)
+                    total += promos[promo_price]
 
 
             #     print('skus[sku]: ', skus[sku])
@@ -137,5 +135,6 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
