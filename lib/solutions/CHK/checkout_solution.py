@@ -32,13 +32,16 @@ class CheckoutSolution:
             promo = inventory[sku]["promo"]
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
-                promo_list.extend(promos)
+                promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+                # promo_list.extend(list(promo_qty_sku, promo_price))
             else:
                 promo_list.extend('')
 
             inventory[sku]["promo"] = promo_list
-            
+
         pprint(inventory)
+
+        # 
 
 
         #     else:
@@ -80,12 +83,7 @@ class CheckoutSolution:
         #             inventory[sku]['promo'] = promo_list
 
 
-        # # Handle non-alpha values and illegal characters
-        # if skus == '':
-        #     return 0
-        # elif not isinstance(skus, str) or skus.upper() != skus or skus == '' or not skus.isalpha():
-        #     return -1
-        
+  
         # else:
         #     # Build a counter with all the SKUs bought and their quantities
         #     c = Counter(skus)
@@ -116,6 +114,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
