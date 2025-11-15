@@ -103,17 +103,16 @@ class CheckoutSolution:
             if discount_type == 'bulk':
                 print(' bulk')
                 for promo in promos:
+                    max_discounted_items = 0
+
                     # Find the max discount threshold, if any
-                    if total_skus >= promo["min_promo_qty"]:
+                    if total_skus >= promo["min_promo_qty"] and promo["min_promo_qty"] > max_discounted_items:
+                        print('max_discounted_items: ', max_discounted_items)
 
-                    
-                    # total_skus >= most_favorable:
-                    #     print("cond")
-                    #     # Apply max discount
-                    #     print("total_skus,most_favorable ", total_skus,most_favorable)
-                    #     discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                    # else:
+                        # discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
 
+                    else:
+                        
                     # If discount threshold not met
 
 
@@ -129,9 +128,3 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
-
-
-
-
-
-

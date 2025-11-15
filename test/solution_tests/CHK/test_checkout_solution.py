@@ -39,6 +39,3 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
-
-
-
