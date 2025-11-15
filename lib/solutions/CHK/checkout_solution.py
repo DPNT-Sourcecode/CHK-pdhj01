@@ -103,7 +103,6 @@ class CheckoutSolution:
                 for promo in promos:
                     if total_skus >= promo["most_favorable"]:
                         discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                    else:
             
             # If buy X get Y free
             else:
@@ -117,11 +116,3 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
-
-
-
-
-
-
-
-
