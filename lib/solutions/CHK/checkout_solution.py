@@ -72,23 +72,24 @@ class CheckoutSolution:
         total_cost = 0
         skus = Counter(skus)
         pprint(inventory)
-        print('skus: ', skus)
 
         # Assume promotions exist
-
         for sku in skus:
+            total_skus = skus[sku]
+            print('sku: ', sku, '| total_skus: ', total_skus)
+        
             promo = inventory[sku]["promo"]
             len_promo = len(promo)
             # Add up all SKUs without promos
             if len_promo == 0:
                 total_cost += inventory[sku]["regular_price"]
             
-            # If bulk discount
-            elif len_promo > 1 and promo_price:
-                total_skus = skus[sku]
-                print('total_skus: ', total_skus)
-            
             # If buy X get Y free
+            elif len_promo > 1 and free_sku:
+                total_skus
+                pass
+
+            # If bulk discount
             else:
                 pass
 
@@ -98,6 +99,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 

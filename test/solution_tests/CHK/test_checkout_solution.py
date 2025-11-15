@@ -21,8 +21,8 @@ class TestCheckout():
 
 
         # promos and regulars
-        assert checkout.checkout('A') == 50
-        # assert checkout.checkout('A') == 50
+        assert checkout.checkout('ABB') == 50
+        assert checkout.checkout('AA') == 50
         # assert checkout.checkout('D') == 15
         # assert checkout.checkout('AB') == 80
         # assert checkout.checkout('CCC') == 60
@@ -38,5 +38,6 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
+
 
 
