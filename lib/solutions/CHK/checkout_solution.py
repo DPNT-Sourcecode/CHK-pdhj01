@@ -81,10 +81,14 @@ class CheckoutSolution:
             if promo == []:
                 total_cost += inventory[sku]["regular_price"]
             
-            # If 
-            elif:
+            # # If bulk discount
+            # elif promo[]:
+
+                
             
+            # # If buy X get Y free
             # else:
+            #     pass
 
         
 
@@ -92,5 +96,6 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 

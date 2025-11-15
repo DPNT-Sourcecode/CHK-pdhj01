@@ -14,10 +14,15 @@ class TestCheckout():
         # Lookup
         assert checkout.checkout('a') == -1
 
-        # Normal
+        # Regular Price Only
         assert checkout.checkout('C') == 20
-        # assert checkout.checkout('B') == 30
-        # assert checkout.checkout('C') == 20
+        assert checkout.checkout('D') == 15
+        assert checkout.checkout('CD') == 15 + 20
+
+
+        # promos and regulars
+        assert checkout.checkout('A') == 50
+        # assert checkout.checkout('A') == 50
         # assert checkout.checkout('D') == 15
         # assert checkout.checkout('AB') == 80
         # assert checkout.checkout('CCC') == 60
@@ -33,4 +38,5 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
+
 
