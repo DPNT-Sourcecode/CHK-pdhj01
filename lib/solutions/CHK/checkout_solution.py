@@ -6,7 +6,6 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        total_cost = 0
         # Create inventory
         inventory = {
                     'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
@@ -58,7 +57,7 @@ class CheckoutSolution:
                             'promo_sku':promo_sku,
                             'promo_price':promo_price,
                             'free_sku': free_sku, 
-                            'unparsed_promo': promo
+                            # 'unparsed_promo': promo
                         }
             
             # Insert blank list if no promos
@@ -69,44 +68,18 @@ class CheckoutSolution:
             inventory[sku]["promo"] = promo_list
 
         # Use a counter to apply discounts
+        total_cost = 0
         skus = Counter(skus)
         pprint(inventory)
         print('skus: ', skus)
 
-        # If no promotions exist:
+        # Assume promotions exist
 
-        # If promotions do exist, and 
-  
-        # else:
-        #     # Build a counter with all the SKUs bought and their quantities
-        #     c = Counter(skus)
+        for sku in skus:
+            promo = inventory[sku]["promo"]
+            if sku not in 
+                total_cost += 1
+            print(sku)
 
-        #     # Iterate through one item and its quantity at a time
-        #     for sku, sku_freq in c.items():
-        #         sku_freq = int(sku_freq)
-
-        #         # Begin with non-promos
-        #         if inventory[sku]["promo"] is None:
-        #             total_no_promo += inventory[sku]["regular_price"] * sku_freq
-                    
-        #         else:
-        #             # If minimum promotion quantity NOT exceeded
-        #             min_promo_qty = inventory[sku]['min_promo_qty']
-        #             regular_price = inventory[sku]["regular_price"]
-        #             promo_price = inventory[sku]["promo_price"]
-
-
-        #             if sku_freq < min_promo_qty:
-        #                 total_promo += regular_price * sku_freq
-
-        #             # If minimum promotion quantity exceeded, apply discount
-        #             else:
-        #                 multiplier, remainder = divmod(sku_freq, min_promo_qty)
-        #                 total_promo += (int(multiplier) * int(promo_price)) + (int(remainder) * int(regular_price))
-            
-        #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
-
-        #     return total_no_promo + total_promo
-
-
+        return total_cost
 
