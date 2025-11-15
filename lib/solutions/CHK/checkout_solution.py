@@ -2,6 +2,7 @@ from collections import Counter
 from pprint import pprint
 
 class CheckoutSolution:
+    
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
@@ -32,26 +33,23 @@ class CheckoutSolution:
             promo = inventory[sku]["promo"]
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
+                promo_list.extend(promos)
 
                 # If an SKU contains more than one promotion, parse them individually
-                for promo_item in promo_list:
+                for i in range(len(promo_list)):
                     # Bulk discount
+                    promo_item = promo_list[i]
                     if 'for' in promo_item:
                         promo_qty_sku, _, promo_price = tuple(promo_item.split(' '))
                         min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                         promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
-                        print('min_promo_qty, promo_sku: ', min_promo_qty, promo_sku)
 
-                        inventory[sku]['min_promo_qty'] = min_promo_qty
-                        inventory[sku]['promo_sku'] = promo_sku
-                        inventory[sku]['promo_price'] = promo_price
-
-                        promo_list.append({
+                        promo_list[i] = {
                                 'min_promo_qty':min_promo_qty,
                                 'promo_sku':promo_sku,
                                 'promo_price':promo_price
-                            })  
-                        
+                            }
+                            
                     # Buy X get Y free 
                     else:
                         promo_qty_sku, _, _, promo_price, _ = tuple(promo.split(' '))
@@ -126,6 +124,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
