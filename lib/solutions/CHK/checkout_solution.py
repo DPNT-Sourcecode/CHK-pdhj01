@@ -101,11 +101,14 @@ class CheckoutSolution:
             # If bulk discount
             remaining_items = skus[sku]
             if discount_type == 'bulk':
-                for min_qty in sorte:
+                for min_qty in inventory[sku]["sorted_min_quantities"]:
+                    while remaining_items > 0:
+                        quotient, _ = divmod(remaining_items, min_qty)
+                        print('promos[min_qty]', promos[min_qty])
+                        total += promos[promo_price]
 
-                    quotient, remainder = divmod(remaining_items, min_qty)
-                    # total += promos[promo_price]
-                    promos[]
+                        remaining_items += quotient * min_qty
+                        print('remaining_items: ', remaining_items)
 
 
             #     print('skus[sku]: ', skus[sku])
@@ -134,4 +137,5 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
