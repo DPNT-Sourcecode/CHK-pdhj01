@@ -106,11 +106,10 @@ class CheckoutSolution:
             
             # If buy X get Y free
             else:
-                pass
-                # print(' get_free')
-                # for promo in promos:
-                #     discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                #     print('discounts, remainder: ', discounts, remainder)
+                print(' get_free')
+                for promo in promos:
+                    discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                    print('discounts, remainder: ', discounts, remainder)
 
 
 
