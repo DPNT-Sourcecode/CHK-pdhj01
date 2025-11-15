@@ -32,8 +32,14 @@ class CheckoutSolution:
             promo = inventory[sku]["promo"]
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
-                promo_qty_sku, _, promo_price = tuple(promo.split(' '))
-                # promo_list.extend(list(promo_qty_sku, promo_price))
+                promo_list.extend(promos)
+
+                # If an SKU contains more than one promotion, parse them individually
+                for promo_item in promo_list:
+                    if 
+                    # promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+                    print('promo_item', promo_item)
+
             else:
                 promo_list.extend('')
 
@@ -48,7 +54,7 @@ class CheckoutSolution:
         #         if promos:
         #             for promo in promos:
         #                 # Split promotion into three parts
-        #                 promo_qty_sku, _, promo_price = tuple(promo.split(' '))
+
 
         #                 # Extract promo quantity and sku
         #                 min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
@@ -114,6 +120,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
