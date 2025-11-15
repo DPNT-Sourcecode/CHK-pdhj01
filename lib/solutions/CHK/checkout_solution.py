@@ -97,12 +97,14 @@ class CheckoutSolution:
                 print('no_discount')
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
 
+
             # If bulk discount
             if discount_type == 'bulk':
-                print(' bulk')
+                sorted_min_quantities = inventory[sku]["sorted_min_quantities"]
 
                 for promo in promos:
-                    discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                    discounted_groups, undiscounted_groups = divmod(skus[sku], max(sorted_min_quantities))
+                    # skus[sku] -= 
 
 
 
@@ -131,6 +133,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
