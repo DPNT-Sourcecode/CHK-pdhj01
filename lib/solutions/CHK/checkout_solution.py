@@ -86,10 +86,10 @@ class CheckoutSolution:
                 total_cost += inventory[sku]["regular_price"]
             
             # If buy X get Y free
-            elif len_promo > 0 and free_sku:
+            elif len_promo > 0 and promo["free_sku"]:
+                free_sku = promo["free_sku"]
                 print('cond2')
-                free_items, remainder = total_skus % promo["min_promo_qty"]
-                print('free_items, remainder', free_items, remainder)
+
                 # free_skus = promo["free_sku"]
                 # skus[sku] = 
 
@@ -97,12 +97,9 @@ class CheckoutSolution:
             else:
                 pass
 
-        
-
-            print(sku)
-
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
