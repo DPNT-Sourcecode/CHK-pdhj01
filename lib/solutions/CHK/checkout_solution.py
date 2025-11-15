@@ -31,7 +31,7 @@ class CheckoutSolution:
             promo_list = []
             promo = inventory[sku]["promo"]
             discount_type = 'no_discount'
-            min_promo_qty = 0
+            min_promo_qtys = []
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -58,7 +58,7 @@ class CheckoutSolution:
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-
+                    min_promo_qtys.append(min_promo_qty)
                     promo_list[i] = {
                             'min_promo_qty':min_promo_qty,
                             'promo_sku':promo_sku,
@@ -76,7 +76,7 @@ class CheckoutSolution:
             
             # Mark discount type at SKU Level
             inventory[sku]["discount_type"] = discount_type
-            inventory[sku]["sorted_quantities"] = most_favorable
+            inventory[sku]["sorted_quantities"] = list(set(min_promo_qtys))
 
         # Use a counter to apply discounts
         total_cost = 0
@@ -116,8 +116,8 @@ class CheckoutSolution:
                 # undiscounted_price = inventory[sku]["regular_price"] * undiscounted_items
 
                 # total_cost += discounted_price + undiscounted_price
-
-
+            if max_discounted_items == 0:
+                total_cost += inventory[sku]["regular_price"] * undiscounted_items
                 print('max_discounted_items:', max_discounted_items)
 
 
@@ -132,6 +132,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
