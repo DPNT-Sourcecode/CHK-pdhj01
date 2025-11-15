@@ -48,6 +48,7 @@ class CheckoutSolution:
                     # Else, Buy X get Y free 
                     else:
                         promo_qty_sku, _, _, free_sku, _ = tuple(promo_item.split(' '))
+                        promo_price = None
 
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
@@ -77,18 +78,19 @@ class CheckoutSolution:
 
         for sku in skus:
             promo = inventory[sku]["promo"]
+            len_promo = len(promo)
             # Add up all SKUs without promos
-            if promo == []:
+            if len_promo == 0:
                 total_cost += inventory[sku]["regular_price"]
             
-            # # If bulk discount
-            # elif promo[]:
-
-                
+            # If bulk discount
+            elif len_promo > 1 and promo_price:
+                total_skus = skus[sku]
+                print('total_skus: ', total_skus)
             
-            # # If buy X get Y free
-            # else:
-            #     pass
+            # If buy X get Y free
+            else:
+                pass
 
         
 
@@ -96,6 +98,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
