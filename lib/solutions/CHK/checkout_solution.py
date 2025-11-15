@@ -31,7 +31,7 @@ class CheckoutSolution:
             promo_list = []
             promo = inventory[sku]["promo"]
             discount_type = 'no_discount'
-            most_favorable = None
+            most_favorable = 0
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -58,7 +58,7 @@ class CheckoutSolution:
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                    if most_favorable > min_promo_qty:
+                    if most_favorable < min_promo_qty:
                         most_favorable = min_promo_qty
 
                     promo_list[i] = {
@@ -86,7 +86,7 @@ class CheckoutSolution:
 
         # Assume promotions exist
         for sku in skus:
-            print(inventory[sku])
+            pprint(inventory[sku])
             total_skus = skus[sku]
             print('sku: ', sku, '| total_skus: ', total_skus)
             promos = inventory[sku]["promo"]
@@ -99,26 +99,25 @@ class CheckoutSolution:
 
             # If bulk discount
             elif discount_type == 'bulk':
-                most_favorable = 0
                 print(' bulk')
                 for promo in promos:
-                    print('promo: ', promo)
-                    # if promo["min_promo_qty"] => most_favorable:
-                    #     promo["min_promo_qty"]
+                    if total_skus >= promo["most_favorable"]:
+                        discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                    else:
             
-                    # discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-
             # If buy X get Y free
             else:
-                print(' get_free')
-                for promo in promos:
-                    discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                    print('discounts, remainder: ', discounts, remainder)
+                pass
+                # print(' get_free')
+                # for promo in promos:
+                #     discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                #     print('discounts, remainder: ', discounts, remainder)
 
 
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
