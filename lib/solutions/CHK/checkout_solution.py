@@ -5,35 +5,37 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        if skus == '' or not isinstance(skus, str):
+
+
+        input = skus
+        total_no_promo, total_promo = 0, 0
+        inventory = {
+                    'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
+                    'B': {"regular_price": 30, "promo": '2B for 45'},
+                    'C': {"regular_price": 20, "promo": None},
+                    'D': {"regular_price": 15, "promo": None},
+                    'E': {"regular_price": 40, "promo": '2E get one B free'}
+                }
+        # Parse and build the inventory lookup
+
+        if skus == '' or not isinstance(skus, str) or not skus.isalpha():
             return -1
-
-        # input = skus
-        # total_no_promo, total_promo = 0, 0
-        # inventory = {
-        #             'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
-        #             'B': {"regular_price": 30, "promo": '2B for 45'},
-        #             'C': {"regular_price": 20, "promo": None},
-        #             'D': {"regular_price": 15, "promo": None},
-        #             'E': {"regular_price": 40, "promo": '2E get one B free'}
-        #         }
-        # # Parse and build the inventory lookup
-
-        # for sku, _ in inventory.items():
-        #     promo_list = []
-        #     promo = inventory[sku]["promo"] 
-        #     print('sku:', sku, 'promo', promo)
+        
+        for sku, _ in inventory.items():
+            promo_list = []
+            promo = inventory[sku]["promo"] 
+            print('sku:', sku, 'promo', promo)
             
-        #     if promo and ',' in promo:
-        #         print("promo exists")
-        #         promos = [i.strip() for i in promo.split(',')]
-        #         promo_list.extend(promos)
-        #         inventory[sku]["promo"] = promo_list
-        #     else:
-        #         # promo_list.append()
-        #         pass
+            if promo and ',' in promo:
+                print("promo exists")
+                promos = [i.strip() for i in promo.split(',')]
+                promo_list.extend(promos)
+                inventory[sku]["promo"] = promo_list
+            else:
+                # promo_list.append()
+                pass
 
-        # print('inventory: ', inventory)
+        pprint('inventory: ', inventory)
         
 
 
@@ -112,6 +114,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
