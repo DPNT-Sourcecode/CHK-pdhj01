@@ -25,22 +25,20 @@ class CheckoutSolution:
                 return -1
             
         # Parse and build the inventory lookup to account for promos
+
         for sku, _ in inventory.items():
             # if promo, 
-            if promo and ',' in promo:
-            if  and if :
-                print("promo exists")
+            promo_list = []
+            promo = inventory[sku]["promo"]
+            if promo:
+                promos = [i.strip() for i in promo.split(',')]
+                promo_list.extend(promos)
+            else:
+                promo_list.extend('')
 
+            inventory[sku]["promo"] = promo_list
+            
         pprint(inventory)
-        #         promos = [i.strip() for i in promo.split(',')]
-        #         promo_list.extend(promos)
-        #         inventory[sku]["promo"] = promo_list
-        #     else:
-        #         # promo_list.append()
-        #         pass
-
-        # pprint('inventory: ', inventory)
-        
 
 
         #     else:
@@ -118,6 +116,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
