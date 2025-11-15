@@ -91,7 +91,7 @@ class CheckoutSolution:
             print('sku: ', sku, '| total_skus: ', total_skus)
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
-            most_favorable = inventory[sku]["most_favourable"]
+            most_favorable = inventory[sku]["most_favorable"]
 
             # Add up all SKUs without promos
             if discount_type == 'no_discount':
@@ -101,12 +101,15 @@ class CheckoutSolution:
             # If bulk discount
             elif discount_type == 'bulk':
                 print(' bulk')
-                print("most_favorable: ", most_favorable)
                 for promo in promos:
+                    
+                    # Check if discount threshold met
                     if total_skus >= most_favorable:
-                        discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                        print('discounts, remainder', discounts, remainder)
-            
+                        
+                        # discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                    # If discount threshold not met
+
+
             # If buy X get Y free
             else:
                 print(' get_free')
@@ -118,4 +121,5 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
