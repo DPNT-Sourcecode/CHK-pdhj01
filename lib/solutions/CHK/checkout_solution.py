@@ -108,8 +108,10 @@ class CheckoutSolution:
                     # Find the max discount threshold, if any
                     if total_skus >= promo["min_promo_qty"] and promo["min_promo_qty"] > max_discounted_items:
                         max_discounted_items = promo["min_promo_qty"]
+
                         discounts, remainder = divmod(total_skus, max_discounted_items)
                         print('discounts, remainder', discounts, remainder)
+
                 # If discount threshold not met
                 if max_discounted_items == 0:
                     total_cost += inventory[sku]["regular_price"] * skus[sku]
@@ -128,6 +130,7 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
