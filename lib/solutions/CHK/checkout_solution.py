@@ -5,7 +5,6 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        print('SKUS: ', skus)
         total_cost = 0
         # Create inventory
         inventory = {
@@ -20,18 +19,19 @@ class CheckoutSolution:
         if skus == '' or not isinstance(skus, str) or not skus.isalpha():
             return -1
 
-        # Check the SKU is actually available
+        # Check the input SKU is actually available in the inventory lookup
         for sku in skus:
             if sku not in inventory.keys():
                 return -1
             
-        # Parse and build the inventory lookup
+        # Parse and build the inventory lookup to account for promos
         for sku, _ in inventory.items():
-            # if promo
+            # if promo, 
+            if promo and ',' in promo:
+            if  and if :
+                print("promo exists")
 
-            # if not promo
-        #     if promo and ',' in promo:
-        #         print("promo exists")
+        pprint(inventory)
         #         promos = [i.strip() for i in promo.split(',')]
         #         promo_list.extend(promos)
         #         inventory[sku]["promo"] = promo_list
@@ -118,6 +118,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
