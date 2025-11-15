@@ -130,7 +130,3 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
-
-
-
-
