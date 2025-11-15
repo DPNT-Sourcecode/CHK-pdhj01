@@ -30,7 +30,7 @@ class CheckoutSolution:
             # if promo, 
             promo_list = []
             promo = inventory[sku]["promo"]
-            discount_type = None
+            discount_type = 'no_discount'
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -84,9 +84,10 @@ class CheckoutSolution:
             total_skus = skus[sku]
             print('sku: ', sku, '| total_skus: ', total_skus)
             promos = inventory[sku]["promo"]
+            discount_type = inventory[sku]["discount_type"]
 
             # Add up all SKUs without promos
-            if not discount_type:
+            if discount_type == 'no_discount':
                 print('cond1')
                 total_cost += inventory[sku]["regular_price"]
             
@@ -94,8 +95,8 @@ class CheckoutSolution:
             elif discount_type == 'get_free':
                 print('cond2')
                 print('promos: ', promos)
-                # for promo in promos:
-                #     print('promo: ', promo)
+                for promo in promos:
+                    print('promo: ', promo)
 
                 # free_skus = promo["free_sku"]
                 # skus[sku] = 
@@ -106,3 +107,4 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
