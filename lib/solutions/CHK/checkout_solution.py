@@ -6,6 +6,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
+        print('-------------------- New record --------------------')
         # Create inventory
         inventory = {
                     'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
@@ -69,15 +70,17 @@ class CheckoutSolution:
             
             # Compile all the items
             inventory[sku]["promo"] = promo_list
+            
+            # Mark discount type at SKU Level
             inventory[sku]["discount_type"] = discount_type
 
         # Use a counter to apply discounts
         total_cost = 0
         skus = Counter(skus)
-        pprint(inventory)
 
         # Assume promotions exist
         for sku in skus:
+            print(inventory[sku])
             total_skus = skus[sku]
             print('sku: ', sku, '| total_skus: ', total_skus)
             promos = inventory[sku]["promo"]
@@ -90,9 +93,9 @@ class CheckoutSolution:
             # If buy X get Y free
             elif discount_type == 'get_free':
                 print('cond2')
-                for promo in promos:
-                    free_sku = promo["free_sku"]
-                    print('promo: ', promo)
+                print('promos: ', promos)
+                # for promo in promos:
+                #     print('promo: ', promo)
 
                 # free_skus = promo["free_sku"]
                 # skus[sku] = 
