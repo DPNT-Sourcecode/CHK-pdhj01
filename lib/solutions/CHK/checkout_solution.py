@@ -90,7 +90,12 @@ class CheckoutSolution:
             if discount_type == 'no_discount':
                 print('no_discount')
                 total_cost += inventory[sku]["regular_price"]
-            
+
+            # If bulk discount
+            else discount_type == 'bulk':
+                print(' bulk')
+                divmod(skus[sku], promo["min_promo_qty"])
+
             # If buy X get Y free
             elif discount_type == 'get_free':
                 print(' get_free')
@@ -99,15 +104,10 @@ class CheckoutSolution:
                     print('discounts, remainder: ', discounts, remainder)
 
 
-                # free_skus = promo["free_sku"]
-                # skus[sku] = 
-
-            # If bulk discount
-            # else:
-            #     pass
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
 
