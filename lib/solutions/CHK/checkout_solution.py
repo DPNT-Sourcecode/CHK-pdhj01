@@ -77,9 +77,20 @@ class CheckoutSolution:
 
         for sku in skus:
             promo = inventory[sku]["promo"]
-            if sku not in 
-                total_cost += 1
+            # Add up all SKUs without promos
+            if promo == []:
+                total_cost += inventory[sku]["regular_price"]
+            
+            # If 
+            elif:
+            
+            # else:
+
+        
+
             print(sku)
 
+        print('total_cost: ', total_cost)
         return total_cost
+
 
