@@ -30,6 +30,7 @@ class CheckoutSolution:
                 # promo_list.append()
                 pass
 
+        pprint('inventory: ', inventory)
         
 
 
@@ -108,6 +109,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
