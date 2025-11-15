@@ -31,7 +31,7 @@ class CheckoutSolution:
             promo_list = []
             promo = inventory[sku]["promo"]
             discount_type = 'no_discount'
-            most_favorable = 0
+            min_promo_qty = 0
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -58,8 +58,6 @@ class CheckoutSolution:
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
-                    if most_favorable < min_promo_qty:
-                        most_favorable = min_promo_qty
 
                     promo_list[i] = {
                             'min_promo_qty':min_promo_qty,
@@ -78,7 +76,7 @@ class CheckoutSolution:
             
             # Mark discount type at SKU Level
             inventory[sku]["discount_type"] = discount_type
-            inventory[sku]["most_favorable"] = most_favorable
+            inventory[sku]["sorted_quantities"] = most_favorable
 
         # Use a counter to apply discounts
         total_cost = 0
@@ -103,22 +101,22 @@ class CheckoutSolution:
             if discount_type == 'bulk':
                 print(' bulk')
                 max_discounted_items = 0
+
                 for promo in promos:
 
                     # Find the max discount threshold, if any
                     if total_skus >= promo["min_promo_qty"] and promo["min_promo_qty"] > max_discounted_items:
                         max_discounted_items = promo["min_promo_qty"]
 
-                        discounted_price = most_favorable * bulk_discounts
+                        # discounted_price = most_favorable * bulk_discounts
 
-                bulk_discounts, undiscounted_items = divmod(total_skus, most_favorable)
-                undiscounted_price = inventory[sku]["regular_price"] * undiscounted_items
+                #         bulk_discounts, undiscounted_items = divmod(total_skus, most_favorable)
+                #         print('bulk_discounts, undiscounted_items', bulk_discounts, undiscounted_items)
+                
+                # undiscounted_price = inventory[sku]["regular_price"] * undiscounted_items
 
-                total_cost += discounted_price + undiscounted_price
+                # total_cost += discounted_price + undiscounted_price
 
-                # If discount threshold not met
-                if max_discounted_items == 0:
-                    total_cost += inventory[sku]["regular_price"] * skus[sku]
 
                 print('max_discounted_items:', max_discounted_items)
 
@@ -134,5 +132,6 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
 
