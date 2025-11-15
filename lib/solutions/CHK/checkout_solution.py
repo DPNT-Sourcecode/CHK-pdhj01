@@ -111,6 +111,9 @@ class CheckoutSolution:
 
                         discounts, remainder = divmod(total_skus, max_discounted_items)
                         print('discounts, remainder', discounts, remainder)
+                        regular_price = inventory[sku]["regular_price"] * remainder
+                        discounted_price = inventory[sku]["regular_price"] * remainder
+                        total_cost += discounted_price + regular_price
 
                 # If discount threshold not met
                 if max_discounted_items == 0:
