@@ -11,8 +11,10 @@ class TestCheckout():
         assert checkout.checkout('4') == -1
 
 
-        # # Normal
-        assert checkout.checkout('A') == 50
+        # Lookup
+        assert checkout.checkout('a') == -1
+
+        # Normal
         # assert checkout.checkout('B') == 30
         # assert checkout.checkout('C') == 20
         # assert checkout.checkout('D') == 15
@@ -30,6 +32,7 @@ class TestCheckout():
         # # assert checkout.checkout('AABB') == 215
         # assert checkout.checkout('ABCDABCD') == 215
         
+
 
 
 

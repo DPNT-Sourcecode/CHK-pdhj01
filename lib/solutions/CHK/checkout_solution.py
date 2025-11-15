@@ -20,22 +20,29 @@ class CheckoutSolution:
 
         if skus == '' or not isinstance(skus, str) or not skus.isalpha():
             return -1
-        
-        for sku, _ in inventory.items():
-            promo_list = []
-            promo = inventory[sku]["promo"] 
-            print('sku:', sku, 'promo', promo)
-            
-            if promo and ',' in promo:
-                print("promo exists")
-                promos = [i.strip() for i in promo.split(',')]
-                promo_list.extend(promos)
-                inventory[sku]["promo"] = promo_list
-            else:
-                # promo_list.append()
-                pass
 
-        pprint('inventory: ', inventory)
+            
+        for sku, _ in inventory.items():
+            # Error if the SKU doesn't exist in inventory
+            print('keys: ', sku)
+            # if sku not in inventory.keys():
+            #      print('SKU does not exist')
+            #      return -1
+            
+        #     promo_list = []
+        #     promo = inventory[sku]["promo"] 
+        #     print('sku:', sku, 'promo', promo)
+            
+        #     if promo and ',' in promo:
+        #         print("promo exists")
+        #         promos = [i.strip() for i in promo.split(',')]
+        #         promo_list.extend(promos)
+        #         inventory[sku]["promo"] = promo_list
+        #     else:
+        #         # promo_list.append()
+        #         pass
+
+        # pprint('inventory: ', inventory)
         
 
 
@@ -114,6 +121,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
