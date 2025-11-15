@@ -29,7 +29,7 @@ class CheckoutSolution:
             # if promo, 
             promo_list = []
             promo = inventory[sku]["promo"]
-
+            discount_type = None
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -44,11 +44,13 @@ class CheckoutSolution:
                     if 'for' in promo_item:
                         promo_qty_sku, _, promo_price = tuple(promo_item.split(' '))
                         free_sku = None
+                        discount_type = 'bulk'
 
                     # Else, Buy X get Y free 
                     else:
                         promo_qty_sku, _, _, free_sku, _ = tuple(promo_item.split(' '))
                         promo_price = None
+                        discount_type = 'get_free'
 
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
@@ -58,15 +60,16 @@ class CheckoutSolution:
                             'promo_sku':promo_sku,
                             'promo_price':promo_price,
                             'free_sku': free_sku, 
-                            # 'unparsed_promo': promo
                         }
             
+
             # Insert blank list if no promos
             else:
                 promo_list.extend('')
             
             # Compile all the items
             inventory[sku]["promo"] = promo_list
+            inventory[sku]["discount_type"] = discount_type
 
         # Use a counter to apply discounts
         total_cost = 0
@@ -77,17 +80,15 @@ class CheckoutSolution:
         for sku in skus:
             total_skus = skus[sku]
             print('sku: ', sku, '| total_skus: ', total_skus)
-        
             promos = inventory[sku]["promo"]
-            len_promos = len(promos)
-            print('len_promo: ', len_promos)
+
             # Add up all SKUs without promos
-            if len_promos == 0:
+            if not discount_type:
                 print('cond1')
                 total_cost += inventory[sku]["regular_price"]
             
             # If buy X get Y free
-            elif len_promos > 0:
+            elif discount_type == 'get_free':
                 print('cond2')
                 for promo in promos:
                     free_sku = promo["free_sku"]
@@ -102,10 +103,3 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
-
-
-
-
-
-
-
