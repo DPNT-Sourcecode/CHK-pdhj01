@@ -5,10 +5,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-
-
-        input = skus
-        total_no_promo, total_promo = 0, 0
+        # Create inventory
         inventory = {
                     'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
                     'B': {"regular_price": 30, "promo": '2B for 45'},
@@ -16,18 +13,23 @@ class CheckoutSolution:
                     'D': {"regular_price": 15, "promo": None},
                     'E': {"regular_price": 40, "promo": '2E get one B free'}
                 }
-        # Parse and build the inventory lookup
-
+        
+        # Handle ValueErrors and bad chars.
         if skus == '' or not isinstance(skus, str) or not skus.isalpha():
             return -1
 
+        # Check the SKU is actually available
+        for sku in skus:
+            if sku not in inventory.keys():
+                return -1
             
+        # Parse and build the inventory lookup
         for sku, _ in inventory.items():
             # Error if the SKU doesn't exist in inventory
             print('keys: ', sku)
-            # if sku not in inventory.keys():
-            #      print('SKU does not exist')
-            #      return -1
+            if sku not in inventory.keys():
+                 print('SKU does not exist')
+                 return -1
             
         #     promo_list = []
         #     promo = inventory[sku]["promo"] 
@@ -121,6 +123,7 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
 
