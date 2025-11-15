@@ -5,6 +5,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
+        print('SKUS: ', skus)
         total_cost = 0
         # Create inventory
         inventory = {
@@ -26,19 +27,9 @@ class CheckoutSolution:
             
         # Parse and build the inventory lookup
         for sku, _ in inventory.items():
-            promo_list = []
+            # if promo
 
-            # If not promo
-            if not inventory[sku]["promo"]:
-                total_cost += inventory[sku]["regular_price"]
-
-
-        return total_cost
-            # If not promo
-                # promo = inventory[sku]["promo"]
-                # print('sku:', sku, 'promo', promo)
-
-            
+            # if not promo
         #     if promo and ',' in promo:
         #         print("promo exists")
         #         promos = [i.strip() for i in promo.split(',')]
@@ -127,5 +118,6 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
