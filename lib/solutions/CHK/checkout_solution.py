@@ -43,18 +43,19 @@ class CheckoutSolution:
                     # If bulk discount
                     if 'for' in promo_item:
                         promo_qty_sku, _, promo_price = tuple(promo_item.split(' '))
-
                     # Else, Buy X get Y free 
                     else:
-                        promo_qty_sku, _, _, promo_price, _ = tuple(promo.split(' '))
-                    
+                        promo_qty_sku, _, _, free_sku, _ = tuple(promo.split(' '))
+
+
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
                     promo_list[i] = {
                             'min_promo_qty':min_promo_qty,
                             'promo_sku':promo_sku,
-                            'promo_price':promo_price
+                            'promo_price':promo_price,
+                            'free_sku': if free_sku else None
                         }
 
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
@@ -129,14 +130,5 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
-
-
-
-
-
-
-
-
-
 
 
