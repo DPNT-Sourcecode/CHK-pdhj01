@@ -30,6 +30,7 @@ class CheckoutSolution:
             # if promo, 
             promo_list = []
             promo = inventory[sku]["promo"]
+
             if promo:
                 promos = [i.strip() for i in promo.split(',')]
                 promo_list.extend(promos)
@@ -43,10 +44,11 @@ class CheckoutSolution:
                     # If bulk discount
                     if 'for' in promo_item:
                         promo_qty_sku, _, promo_price = tuple(promo_item.split(' '))
+                        free_sku = None
+
                     # Else, Buy X get Y free 
                     else:
-                        promo_qty_sku, _, _, free_sku, _ = tuple(promo.split(' '))
-
+                        promo_qty_sku, _, _, free_sku, _ = tuple(promo_item.split(' '))
 
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
@@ -55,50 +57,25 @@ class CheckoutSolution:
                             'min_promo_qty':min_promo_qty,
                             'promo_sku':promo_sku,
                             'promo_price':promo_price,
-                            'free_sku': if free_sku else None
+                            'free_sku': free_sku, 
+                            'unparsed_promo': promo
                         }
-
-                    min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-
+            
+            # Insert blank list if no promos
             else:
                 promo_list.extend('')
-
+            
+            # Compile all the items
             inventory[sku]["promo"] = promo_list
-
-        pprint(inventory)
 
         # Use a counter to apply discounts
         skus = Counter(skus)
+        pprint(inventory)
         print('skus: ', skus)
-        # 
 
+        # If no promotions exist:
 
-        #     else:
-        #         if promos:
-        #             for promo in promos:
-        #                 # Split promotion into three parts
-
-
-        #             inventory[sku]['promo'] = promo_list
-        #         else:
-        #             promo_qty_sku, _, promo_price = tuple(promo.split(' '))
-
-        #             # Extract promo quantity and sku
-        #             min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
-        #             promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
-
-        #             inventory[sku]['min_promo_qty'] = min_promo_qty
-        #             inventory[sku]['promo_sku'] = promo_sku
-        #             inventory[sku]['promo_price'] = promo_price
-
-        #             promo_list.append({
-        #                     'min_promo_qty':min_promo_qty,
-        #                     'promo_sku':promo_sku,
-        #                     'promo_price':promo_price
-        #                 })  
-        #             inventory[sku]['promo'] = promo_list
-
-
+        # If promotions do exist, and 
   
         # else:
         #     # Build a counter with all the SKUs bought and their quantities
@@ -130,5 +107,6 @@ class CheckoutSolution:
         #     print('input:', input, 'total_no_promo', total_no_promo, 'total_promo', total_promo)
 
         #     return total_no_promo + total_promo
+
 
 
