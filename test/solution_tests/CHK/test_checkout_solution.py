@@ -14,29 +14,20 @@ class TestCheckout():
         assert checkout.checkout('a') == -1
 
         # # Regular Price Only
-        # assert checkout.checkout('C') == 20
-        # assert checkout.checkout('D') == 15
-        # assert checkout.checkout('CD') == 15 + 20
+        assert checkout.checkout('C') == 20
+        assert checkout.checkout('D') == 15
+        assert checkout.checkout('CD') == 15 + 20
 
         # # promos and regulars
-        # assert checkout.checkout('A') == 50
-        # assert checkout.checkout('AA') == 100
-        # assert checkout.checkout('AAC') == 120
-        # assert checkout.checkout('AACC') == 140
-        assert checkout.checkout(9*'A') == 130
-        # assert checkout.checkout('D') == 15
-        # assert checkout.checkout('AB') == 80
-        # assert checkout.checkout('CCC') == 60
-        # assert checkout.checkout('AAAA') == 180
-
-        # # Edge
-        # assert checkout.checkout('AAABA') == 210
-        # assert checkout.checkout('AAABB') == 130 + 45
-        # assert checkout.checkout('AAABBB') == 205
-        # assert checkout.checkout('AAABBC') == 130 + 45 + 20
-        # assert checkout.checkout('AAABBCC') == 130 + 45 + 2*20 #215
-
-        # # assert checkout.checkout('AABB') == 215
-        # assert checkout.checkout('ABCDABCD') == 215
+        assert checkout.checkout('A') == 50
+        assert checkout.checkout('AA') == 100
+        assert checkout.checkout('AAC') == 120
+        assert checkout.checkout('AAAAAACC') == 250 + 40
+        assert checkout.checkout(9*'A') == 380
         
+        # Buy one get one free
+        assert checkout.checkout('E') == 40
+
+        
+
 

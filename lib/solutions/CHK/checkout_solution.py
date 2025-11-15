@@ -78,6 +78,7 @@ class CheckoutSolution:
             inventory[sku]["discount_type"] = discount_type
             inventory[sku]["sorted_min_quantities"] = sorted(min_promo_qtys, reverse=True)
             inventory[sku]["promo"] = promo_dict
+
         # Use a counter to apply discounts
         total_cost = 0
         skus = Counter(skus)
@@ -108,17 +109,20 @@ class CheckoutSolution:
                     total_cost += float(promos[min_qty]['promo_price']) * quotient
                     print('remainder', remainder)
         
-            total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+                total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+
+            # If buy X get Y free
+            else:
+                print(' get_free')
+                # for promo in promos:
+                    # discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
+                    # print('discounts, remainder: ', discounts, remainder)
 
         print('total_cost: ', total_cost)
         return total_cost
     
-            # # If buy X get Y free
-            # else:
-            #     print(' get_free')
-                # for promo in promos:
-                #     discounts, remainder = divmod(skus[sku], promo["min_promo_qty"])
-                #     print('discounts, remainder: ', discounts, remainder)
+
+
 
 
 
