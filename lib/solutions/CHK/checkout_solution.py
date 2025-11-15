@@ -6,7 +6,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        print('-------------------- New record --------------------')
+        print(f'-------------------- New record: skus {skus} --------------------')
         # Create inventory
         inventory = {
                     'A': {"regular_price": 50, "promo": '3A for 130, 5A for 200'},
@@ -88,15 +88,17 @@ class CheckoutSolution:
 
             # Add up all SKUs without promos
             if discount_type == 'no_discount':
-                print('cond1')
+                print('no_discount')
                 total_cost += inventory[sku]["regular_price"]
             
             # If buy X get Y free
             elif discount_type == 'get_free':
-                print('cond2')
-                print('promos: ', promos)
+                print(' get_free')
                 for promo in promos:
-                    print('promo: ', promo)
+                    free_sku = promo["free_sku"]
+                    print('total occurences of same item: ',  skus[sku])
+                    # free_items, regular_items = skus[sku] promo["min_promo_qty"]
+                    # print('promo: ', promo)
 
                 # free_skus = promo["free_sku"]
                 # skus[sku] = 
@@ -107,4 +109,5 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
 
