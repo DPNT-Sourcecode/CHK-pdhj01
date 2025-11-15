@@ -60,20 +60,13 @@ class CheckoutSolution:
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
 
                     min_promo_qtys.append(min_promo_qty)
-                    promo_list[i] = {
-                            'min_promo_qty':min_promo_qty,
-                            'promo_sku':promo_sku,
-                            'promo_price':promo_price,
-                            'free_sku': free_sku, 
-                        }
-                    promo_dict[min_promo_qty]                     promo_list[i] = {
-                            'min_promo_qty':min_promo_qty,
+   
+                    promo_dict[min_promo_qty] = {
                             'promo_sku':promo_sku,
                             'promo_price':promo_price,
                             'free_sku': free_sku, 
                         }
             
-
             # Insert blank list if no promos
             else:
                 promo_list.extend('')
@@ -84,7 +77,7 @@ class CheckoutSolution:
             # Mark discount type at SKU Level
             inventory[sku]["discount_type"] = discount_type
             inventory[sku]["sorted_min_quantities"] = list(set(min_promo_qtys))
-
+            inventory[sku]["promo"] = promo_dict
         # Use a counter to apply discounts
         total_cost = 0
         skus = Counter(skus)
@@ -105,14 +98,14 @@ class CheckoutSolution:
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
 
 
-            # # If bulk discount
-            # remaining_items = skus[sku]
-            # if discount_type == 'bulk':
-            #     for min_qty in inventory[sku]["sorted_min_quantities"]:
+            # If bulk discount
+            remaining_items = skus[sku]
+            if discount_type == 'bulk':
+                for min_qty in sorte:
 
-            #         quotient, remainder = divmod(remaining_items, min_qty)
-            #         total += promos[promo_price]
-            #         # print('discounted_groups, undiscounted_groups: ', discounted_groups, undiscounted_groups)
+                    quotient, remainder = divmod(remaining_items, min_qty)
+                    # total += promos[promo_price]
+                    promos[]
 
 
             #     print('skus[sku]: ', skus[sku])
@@ -141,3 +134,4 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
