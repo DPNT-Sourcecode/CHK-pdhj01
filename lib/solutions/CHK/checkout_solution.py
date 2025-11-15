@@ -109,11 +109,12 @@ class CheckoutSolution:
                     if total_skus >= promo["min_promo_qty"] and promo["min_promo_qty"] > max_discounted_items:
                         max_discounted_items = promo["min_promo_qty"]
 
-                        discounts, remainder = divmod(total_skus, max_discounted_items)
-                        print('discounts, remainder', discounts, remainder)
-                        regular_price = inventory[sku]["regular_price"] * remainder
-                        discounted_price = inventory[sku]["regular_price"] * remainder
-                        total_cost += discounted_price + regular_price
+                discounted_item, undiscounted_items = divmod(total_skus, most_favorable)
+                print('discounted_item, undiscounted_items', discounted_item, undiscounted_items)
+                undiscounted_price = inventory[sku]["regular_price"] * undiscounted_items
+                print('undiscounted_price: ', undiscounted_price)
+                        # discounted_price = most_favorable * discounted_item
+                        # total_cost += discounted_price + undiscounted_price
 
                 # If discount threshold not met
                 if max_discounted_items == 0:
@@ -133,3 +134,4 @@ class CheckoutSolution:
 
         print('total_cost: ', total_cost)
         return total_cost
+
