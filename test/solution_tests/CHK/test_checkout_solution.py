@@ -35,5 +35,6 @@ class TestCheckout():
         assert checkout.checkout('BEBEEE') == 160
         assert checkout.checkout('ABCDEABCDE') == 280
 
+        assert checkout.checkout('AAAAAEEBAAABB') == 455
         # assert checkout.checkout('AAAAAEEBAAABB') == 455
         # assert checkout.checkout('ABCDECBAABCABBAAAEEAA') == 665
