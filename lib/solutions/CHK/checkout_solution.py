@@ -80,7 +80,7 @@ class CheckoutSolution:
 
         skus = Counter(skus)
         print('skus', skus)
-        
+
         total_price = 0
         price_to_deduct = 0
         for sku in skus:
@@ -92,15 +92,10 @@ class CheckoutSolution:
                         
             # Apply bulk discounts to total
             if discount_type == 'bulk':
-
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
-                    if sku == 'B' and 'E' in skus:
-                        print('free condition')
-                        # total_price += inventory[sku]["regular_price"] * skus[sku]
-                    else:
-                        total_price += promos[min_qty]['promo_price'] * quotient
+                    total_price += int(promos[min_qty]['promo_price']) * quotient
 
                 total_price += int(inventory[sku]["regular_price"]) * int(remainder)
                 print('bulk_total_price', total_price)
