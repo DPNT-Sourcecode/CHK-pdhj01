@@ -20,15 +20,15 @@ class TestCheckout():
 
         # promos and regulars
         assert checkout.checkout('A') == 50
-        # assert checkout.checkout('AA') == 100
-        # assert checkout.checkout('AAC') == 120
-        # assert checkout.checkout('AAAAAACC') == (1 * 200) + (1 * 50) + (2 * 20) #290
-        # assert checkout.checkout(9*'A') == 380
+        assert checkout.checkout('AA') == 100
+        assert checkout.checkout('AAC') == 120
+        assert checkout.checkout('AAAAAACC') == (1 * 200) + (1 * 50) + (2 * 20) #290
+        assert checkout.checkout(9*'A') == 380
         
-        # # # Buy one get one free
-        # assert checkout.checkout('EA') == 90
-        # assert checkout.checkout('EE') == 80
-        # assert checkout.checkout('EEB') == 80
+        # # # # Buy one get one free
+        assert checkout.checkout('EA') == 90
+        assert checkout.checkout('EE') == 80
+        assert checkout.checkout('EEB') == 80
         # assert checkout.checkout('EEAB') == 2*40 + 50 + 0
         # assert checkout.checkout('EEAAAB') == 2*40 + 130 + 0
 
