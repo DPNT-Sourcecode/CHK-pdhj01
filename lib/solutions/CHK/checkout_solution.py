@@ -98,7 +98,7 @@ class CheckoutSolution:
                     remaining_items -= quotient * min_qty
                     if sku == 'B' and 'E' in skus:
                         print('free condition')
-                        total_price += inventory[sku]["regular_price"] * skus[sku]
+                        # total_price += inventory[sku]["regular_price"] * skus[sku]
                     else:
                         total_price += promos[min_qty]['promo_price'] * quotient
 
