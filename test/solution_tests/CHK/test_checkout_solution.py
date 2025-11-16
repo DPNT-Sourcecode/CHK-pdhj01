@@ -15,14 +15,14 @@ class TestCheckout():
 
         # # Regular Price Only
         assert checkout.checkout('C') == 20
-        # assert checkout.checkout('D') == 15
-        # assert checkout.checkout('CD') == 15 + 20
+        assert checkout.checkout('D') == 15
+        assert checkout.checkout('CD') == 15 + 20
 
-        # # promos and regulars
-        # assert checkout.checkout('A') == 50
-        # assert checkout.checkout('AA') == 100
-        # assert checkout.checkout('AAC') == 120
-        # assert checkout.checkout('AAAAAACC') == 250 + 40
+        # promos and regulars
+        assert checkout.checkout('A') == 50
+        assert checkout.checkout('AA') == 100
+        assert checkout.checkout('AAC') == 120
+        assert checkout.checkout('AAAAAACC') == 250 + 40
         # assert checkout.checkout(9*'A') == 380
         
         # # # Buy one get one free
@@ -35,4 +35,3 @@ class TestCheckout():
         # assert checkout.checkout('EEEEBB') == 4 * 40 #160
         # assert checkout.checkout('BEBEEE') == 160
         # assert checkout.checkout('ABCDEABCDE') == 280
-
