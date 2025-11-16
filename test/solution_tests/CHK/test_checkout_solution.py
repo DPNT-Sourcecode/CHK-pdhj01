@@ -25,8 +25,10 @@ class TestCheckout():
         assert checkout.checkout('AAAAAACC') == 250 + 40
         assert checkout.checkout(9*'A') == 380
         
-        # Buy one get one free
-        assert checkout.checkout('EA') == 40
+        # # Buy one get one free
+        assert checkout.checkout('EA') == 90
+        assert checkout.checkout('EE') == 80
 
         
+
 

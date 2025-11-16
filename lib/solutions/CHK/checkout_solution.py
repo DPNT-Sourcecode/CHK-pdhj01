@@ -92,13 +92,6 @@ class CheckoutSolution:
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
 
-            # Add up all SKUs without promos
-            if discount_type == 'no_discount':
-                print("max(skus): :", skus)
-                print('no_discount')
-                total_cost += inventory[sku]["regular_price"] * skus[sku]
-
-
             # If bulk discount
             remaining_items = skus[sku]
             if discount_type == 'bulk':
@@ -112,25 +105,31 @@ class CheckoutSolution:
                 total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
 
             # If buy X get Y free
-            else:
+            elif discount_type == 'get_free':
                 print(' get_free')
-                print('total_cost', total_cost)
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
 
-                    print('item_to_deduct:', promos[min_qty]['free_sku'])
+                    # print('item_to_deduct:', promos[min_qty]['free_sku'])
                     # if item_to_deduct in skus:
                     #     print('skus[item_to_deduct]:', skus[item_to_deduct])
                     # total_cost += float(promos[min_qty]['promo_price']) * quotient
                     # print('total_cost', total_cost)
         
-                # total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+                total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
 
+           # Add up all SKUs without promos
+            else:
+                print("max(skus): :", skus)
+                print('no_discount')
+                total_cost += inventory[sku]["regular_price"] * skus[sku]
+            
 
         print('total_cost: ', total_cost)
         return total_cost
     
+
 
 
 
