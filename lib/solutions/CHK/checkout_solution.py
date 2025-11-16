@@ -102,25 +102,26 @@ class CheckoutSolution:
 
             # If buy X get Y free
             elif discount_type == 'get_free':
-                # If 
+                # If free, add the price, then deduct at the end
                 total_price += inventory[sku]["regular_price"] * skus[sku]
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
-                    quotient_2, remainder_2= divmod(remaining_items, min_qty)
-                #     remaining_items -= quotient * min_qty
-                    # free_sku = promos[min_qty]['free_sku']
-                    # print('quotient, remainder', quotient, remainder)
-                    # if free_sku in skus:
-                    #     price_to_deduct = quotient * inventory[free_sku]["regular_price"]
-                    # print('price_to_deduct', price_to_deduct)
-
-                # total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
-                # print('total_cost before deductions ', total_cost)
+                    quotient, remainder = divmod(remaining_items, min_qty)
+                    remaining_items -= quotient * min_qty
+                    free_sku = promos[min_qty]['free_sku']
+                    print('quotient, remainder', quotient, remainder)
+                    if free_sku in skus:
+                        price_to_deduct = quotient * inventory[free_sku]["regular_price"]
+                    print('price_to_deduct', price_to_deduct)
 
            # Add up all SKUs without promos
             else:                    
                 print('skus[sku]', inventory[sku]["regular_price"])
                 total_price += inventory[sku]["regular_price"] * skus[sku]
                 print('other_total_price', total_price)
+
+            print('total_cost before deductions ', total_price)
+
+        total_price -= price_to_deduct
 
         print('total_price: ', total_price)
         return int(total_price)
