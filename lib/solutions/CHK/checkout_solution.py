@@ -101,8 +101,12 @@ class CheckoutSolution:
                     remaining_items -= quotient * min_qty
                     total_price += int(promos[min_qty]['promo_price']) * quotient
 
-                total_price += int(inventory[sku]["regular_price"]) * int(remainder)
-                print('bulk_total_price', total_price)
+                if get_free:
+                    total_price += int(inventory[sku]["regular_price"]) * int(remainder)
+                else:
+                    total_price += int(inventory[sku]["regular_price"]) * int(remainder)
+                print('bulk_total_price', total_price)              
+
 
             # If buy X get Y free
             elif discount_type == 'get_free':
