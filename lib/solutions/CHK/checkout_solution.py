@@ -80,6 +80,10 @@ class CheckoutSolution:
 
         skus = Counter(skus)
         print('skus', skus)
+        
+        # get free checker
+        if 'E' in skus:
+            get_free = True
 
         total_price = 0
         price_to_deduct = 0
