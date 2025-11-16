@@ -82,9 +82,11 @@ class CheckoutSolution:
         print('skus', skus)
 
         total_price = 0
+        price_to_deduct = 0
         for sku in skus:
             discount_type = inventory[sku]['discount_type']
             remaining_items = skus[sku]
+            promos = inventory[sku]["promo"]
             print(f'-------- processing sku: {sku}')
             pprint(inventory[sku])
                         
@@ -99,7 +101,20 @@ class CheckoutSolution:
                 total_price += int(inventory[sku]["regular_price"]) * int(remainder)
                 print('bulk_total_price', total_price)
 
-        
+            # If buy X get Y free
+            if discount_type == 'get_free':
+                for min_qty in inventory[sku]["sorted_min_quantities"]:
+                    quotient_2, remainder _2= divmod(remaining_items, min_qty)
+                    # remaining_items -= quotient * min_qty
+                    # free_sku = promos[min_qty]['free_sku']
+                    # print('quotient, remainder', quotient, remainder)
+                #     if free_sku in skus:
+                #         price_to_deduct = quotient * inventory[free_sku]["regular_price"]
+                #     print('price_to_deduct', price_to_deduct)
+
+                # total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
+                # print('total_cost before deductions ', total_cost)
+
            # Add up all SKUs without promos
             else:                    
                 total_price += inventory[sku]["regular_price"] * skus[sku]
@@ -107,6 +122,7 @@ class CheckoutSolution:
 
         print('total_price: ', total_price)
         return int(total_price)
+
 
 
 
