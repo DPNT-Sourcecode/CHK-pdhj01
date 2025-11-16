@@ -131,10 +131,3 @@ class CheckoutSolution:
 
 
 
-
-
-
-
-
-
-

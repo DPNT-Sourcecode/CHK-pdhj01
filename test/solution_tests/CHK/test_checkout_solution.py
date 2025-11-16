@@ -29,5 +29,3 @@ class TestCheckout():
         assert checkout.checkout('E') == 40
 
         
-
-
