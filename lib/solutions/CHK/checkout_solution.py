@@ -85,6 +85,7 @@ class CheckoutSolution:
         bulk_deductions = 0
         get_free_deductions = 0
         for sku in skus:
+            pprint(inventory[sku])
             sku_freq = skus[sku]
             print('-------- processing sku: ', sku)
             undiscounted_price += inventory[sku]["regular_price"] * sku_freq

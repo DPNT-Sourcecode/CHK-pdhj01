@@ -22,7 +22,7 @@ class TestCheckout():
         assert checkout.checkout('A') == 50
         assert checkout.checkout('AA') == 100
         assert checkout.checkout('AAC') == 120
-        assert checkout.checkout('AAAAAACC') == 250 + 40
+        assert checkout.checkout('AAAAAACC') == (6 * 50) + (2 * 20) 
         # assert checkout.checkout(9*'A') == 380
         
         # # # Buy one get one free
