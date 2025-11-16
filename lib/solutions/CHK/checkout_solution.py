@@ -96,15 +96,16 @@ class CheckoutSolution:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
                     total_price += int(promos[min_qty]['promo_price']) * quotient
-                    print('total_price', total_price)
 
                 total_price += int(inventory[sku]["regular_price"]) * int(remainder)
                 print('bulk_total_price', total_price)
 
             # If buy X get Y free
-            if discount_type == 'get_free':
-                for min_qty in inventory[sku]["sorted_min_quantities"]:
-                    quotient_2, remainder _2= divmod(remaining_items, min_qty)
+            elif discount_type == 'get_free':
+                continue
+            #     for min_qty in inventory[sku]["sorted_min_quantities"]:
+            #         continue
+                    # quotient_2, remainder_2= divmod(remaining_items, min_qty)
                     # remaining_items -= quotient * min_qty
                     # free_sku = promos[min_qty]['free_sku']
                     # print('quotient, remainder', quotient, remainder)
@@ -117,11 +118,13 @@ class CheckoutSolution:
 
            # Add up all SKUs without promos
             else:                    
+                print('skus[sku]', inventory[sku]["regular_price"])
                 total_price += inventory[sku]["regular_price"] * skus[sku]
                 print('other_total_price', total_price)
 
         print('total_price: ', total_price)
         return int(total_price)
+
 
 
 
