@@ -37,7 +37,6 @@ class CheckoutSolution:
 
                 # If an SKU contains more than one promotion, parse them individually
                 for i in range(len(promo_list)):
-
                     # Bulk discount
                     promo_item = promo_list[i]
 
@@ -52,7 +51,6 @@ class CheckoutSolution:
                         promo_qty_sku, _, _, free_sku, _ = tuple(promo_item.split(' '))
                         promo_price = None
                         discount_type = 'get_free'
-
 
                     min_promo_qty = int([i for i in promo_qty_sku if i.isnumeric()][0])
                     promo_sku = [i for i in promo_qty_sku if i.isalpha()][0]
