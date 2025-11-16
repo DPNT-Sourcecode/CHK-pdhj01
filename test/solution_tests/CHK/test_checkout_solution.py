@@ -26,6 +26,7 @@ class TestCheckout():
         assert checkout.checkout(9*'A') == 380
         
         # Buy one get one free
-        assert checkout.checkout('E') == 40
+        assert checkout.checkout('EA') == 40
 
         
+
