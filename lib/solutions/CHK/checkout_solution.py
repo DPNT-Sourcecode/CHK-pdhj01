@@ -94,7 +94,7 @@ class CheckoutSolution:
                 print("bulk")
 
             # get free discounts
-        print("undiscounted_price: ", undiscounted_price)
 
-        total_price = undiscounted_price - m
-        return undiscounted_price
+        total_price = undiscounted_price - max([abs(bulk_deductions), abs(get_free_deductions)])
+        print('total_price: ', total_price)
+        return int(total_price)
