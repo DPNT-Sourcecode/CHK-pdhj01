@@ -84,7 +84,7 @@ class CheckoutSolution:
 
         # Assume promotions exist
         for sku in skus:
-            # pprint(inventory[sku])
+            pprint(inventory[sku])
             total_skus = skus[sku]
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
@@ -114,20 +114,12 @@ class CheckoutSolution:
 
                 total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
                 total_cost = total_cost - price_to_deduct
-                skus[free_sku] = skus[free_sku] - quotient
-                print('skus[free_sku], ', skus[free_sku])
 
            # Add up all SKUs without promos
-            else:
+            else:                    
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
                 print('other_total_cost', total_cost)
             
 
         print('total_cost: ', total_cost)
         return total_cost
-
-
-
-
-
-

@@ -34,9 +34,3 @@ class TestCheckout():
         assert checkout.checkout('EEBB') == 2*40 + 0 + 30
 
         
-
-
-
-
-
-
