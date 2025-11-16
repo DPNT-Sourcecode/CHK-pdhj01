@@ -91,19 +91,8 @@ class CheckoutSolution:
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
 
-            # If bulk discount
-            remaining_items = skus[sku]
-            if discount_type == 'bulk':
-                for min_qty in inventory[sku]["sorted_min_quantities"]:
-                    quotient, remainder = divmod(remaining_items, min_qty)
-                    remaining_items -= quotient * min_qty
-                    total_cost += float(promos[min_qty]['promo_price']) * quotient
-        
-                total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
-                print('bulk_total_cost', total_cost)
-
             # If buy X get Y free
-            elif discount_type == 'get_free':
+            if discount_type == 'get_free':
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
@@ -115,12 +104,24 @@ class CheckoutSolution:
 
                 total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
                 print('total_cost before deductions ', total_cost)
-
-           # Add up all SKUs without promos
-            else:                    
-                total_cost += inventory[sku]["regular_price"] * skus[sku]
-                print('other_total_cost', total_cost)
             
-        total_cost = total_cost - price_to_deduct
-        print('total_cost: ', total_cost)
-        return int(total_cost)
+            # If bulk discount
+            remaining_items = skus[sku]
+            elif discount_type == 'bulk':
+        #         for min_qty in inventory[sku]["sorted_min_quantities"]:
+        #             quotient, remainder = divmod(remaining_items, min_qty)
+        #             remaining_items -= quotient * min_qty
+        #             total_cost += float(promos[min_qty]['promo_price']) * quotient
+        
+        #         total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+        #         print('bulk_total_cost', total_cost)
+
+
+        #    # Add up all SKUs without promos
+        #     else:                    
+        #         total_cost += inventory[sku]["regular_price"] * skus[sku]
+        #         print('other_total_cost', total_cost)
+            
+        # total_cost = total_cost - price_to_deduct
+        # print('total_cost: ', total_cost)
+        # return int(total_cost)
