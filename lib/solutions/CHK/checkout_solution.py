@@ -92,13 +92,16 @@ class CheckoutSolution:
                         
             # Apply bulk discounts to total
             if discount_type == 'bulk':
-                for min_qty in inventory[sku]["sorted_min_quantities"]:
-                    quotient, remainder = divmod(remaining_items, min_qty)
-                    remaining_items -= quotient * min_qty
-                    total_price += int(promos[min_qty]['promo_price']) * quotient
+                if "E" in skus and "B" in skus and skus["E"] > 1:
+                    print('special')
+                else:
+                    for min_qty in inventory[sku]["sorted_min_quantities"]:
+                        quotient, remainder = divmod(remaining_items, min_qty)
+                        remaining_items -= quotient * min_qty
+                        total_price += int(promos[min_qty]['promo_price']) * quotient
 
-                total_price += int(inventory[sku]["regular_price"]) * int(remainder)
-                print('bulk_total_price', total_price)
+                    total_price += int(inventory[sku]["regular_price"]) * int(remainder)
+                    print('bulk_total_price', total_price)
 
             # If buy X get Y free
             elif discount_type == 'get_free':
@@ -125,5 +128,3 @@ class CheckoutSolution:
 
         print('total_price: ', total_price)
         return int(total_price)
-
-
