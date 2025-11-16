@@ -94,6 +94,7 @@ class CheckoutSolution:
             if discount_type == 'bulk':
                 if "E" in skus and "B" in skus and skus["E"] > 1:
                     print('special')
+                    total_price += int(inventory[sku]["regular_price"]) * skus["B"]
                 else:
                     for min_qty in inventory[sku]["sorted_min_quantities"]:
                         quotient, remainder = divmod(remaining_items, min_qty)
