@@ -107,19 +107,22 @@ class CheckoutSolution:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
                     free_sku = promos[min_qty]['free_sku']
+                    print('quotient, remainder', quotient, remainder)
                     if free_sku in skus:
                         price_to_deduct = quotient * inventory[free_sku]["regular_price"]
+                    print('price_to_deduct', price_to_deduct)
 
                 total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
-                total_cost -= price_to_deduct
+                total_cost = total_cost - price_to_deduct
+                skus[free_sku] = skus[free_sku] - quotient
+                print('skus[free_sku], ', skus[free_sku])
 
            # Add up all SKUs without promos
             else:
-                print("max(skus): :", skus)
-                print('no_discount')
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
                 print('other_total_cost', total_cost)
             
+
         print('total_cost: ', total_cost)
         return total_cost
 
