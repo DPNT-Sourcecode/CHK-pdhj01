@@ -30,8 +30,10 @@ class TestCheckout():
         assert checkout.checkout('EE') == 80
         assert checkout.checkout('EEB') == 80
         assert checkout.checkout('EEAB') == 2*40 + 50 + 0
-        # assert checkout.checkout('AAAEEB') == (1*130) + (2 * 40) + (0)
 
         assert checkout.checkout('EEEEBB') == 4 * 40 #160
         assert checkout.checkout('BEBEEE') == 160
         assert checkout.checkout('ABCDEABCDE') == 280
+
+        # assert checkout.checkout('AAAAAEEBAAABB') == 455
+        # assert checkout.checkout('ABCDECBAABCABBAAAEEAA') == 665
