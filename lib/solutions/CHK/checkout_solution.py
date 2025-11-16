@@ -86,7 +86,6 @@ class CheckoutSolution:
         # Assume promotions exist
         for sku in skus:
             pprint(inventory[sku])
-            total_skus = skus[sku]
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
 
