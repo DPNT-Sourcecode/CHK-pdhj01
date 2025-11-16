@@ -122,4 +122,4 @@ class CheckoutSolution:
                 print('other_total_cost', total_cost)
             
         print('total_cost: ', total_cost)
-        return total_cost
+        return int(total_cost)
