@@ -2,8 +2,6 @@ from collections import Counter
 from pprint import pprint
 
 class CheckoutSolution:
-    
-
     # skus = unicode string
     def checkout(self, skus: str) -> int:
         print(f'-------------------- New record: skus {skus} --------------------')
@@ -86,58 +84,44 @@ class CheckoutSolution:
 
         # Assume promotions exist
         for sku in skus:
-            pprint(inventory[sku])
+            # pprint(inventory[sku])
             total_skus = skus[sku]
-            print('sku: ', sku, '| total_skus: ', total_skus)
             promos = inventory[sku]["promo"]
             discount_type = inventory[sku]["discount_type"]
 
             # If bulk discount
             remaining_items = skus[sku]
             if discount_type == 'bulk':
-                print(' bulk')
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
                     total_cost += float(promos[min_qty]['promo_price']) * quotient
-                    print('remainder', remainder)
         
                 total_cost += float(inventory[sku]["regular_price"]) * float(remainder)
+                print('bulk_total_cost', total_cost)
 
             # If buy X get Y free
             elif discount_type == 'get_free':
                 price_to_deduct = 0
-                print(' get_free')
                 for min_qty in inventory[sku]["sorted_min_quantities"]:
                     quotient, remainder = divmod(remaining_items, min_qty)
                     remaining_items -= quotient * min_qty
-                    print('quotient, remainder', quotient, remainder)
-
                     free_sku = promos[min_qty]['free_sku']
-                    print('free_sku', free_sku)
                     if free_sku in skus:
-                        print('sku in collection', skus[free_sku])
                         price_to_deduct = quotient * inventory[free_sku]["regular_price"]
-                        print('price_to_deduct', price_to_deduct)
-                        
+
                 total_cost += float(inventory[sku]["regular_price"]) * skus[sku]
                 total_cost -= price_to_deduct
-
 
            # Add up all SKUs without promos
             else:
                 print("max(skus): :", skus)
                 print('no_discount')
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
+                print('other_total_cost', total_cost)
             
-
         print('total_cost: ', total_cost)
         return total_cost
-    
-
-
-
-
 
 
 
