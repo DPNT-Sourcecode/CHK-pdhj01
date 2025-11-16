@@ -5,7 +5,7 @@ class TestCheckout():
     def test_checkout(self):
         checkout = CheckoutSolution()
         # Illegal chars and values
-        assert checkout.checkout('') == -1
+        assert checkout.checkout('') == 0
         assert checkout.checkout(1) == -1
         assert checkout.checkout('-') == -1
         assert checkout.checkout('4') == -1
@@ -31,3 +31,4 @@ class TestCheckout():
         assert checkout.checkout('EEB') == 80
         assert checkout.checkout('EEAB') == 2*40 + 50 + 0
         assert checkout.checkout('EEAAAB') == 2*40 + 130 + 0
+

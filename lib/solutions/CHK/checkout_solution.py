@@ -15,7 +15,10 @@ class CheckoutSolution:
                 }
         
         # Handle ValueErrors and bad chars.
-        if skus == '' or not isinstance(skus, str) or not skus.isalpha():
+        if skus == '' or skus == "":
+            return 0
+        
+        if not isinstance(skus, str) or not skus.isalpha():
             return -1
 
         # Check the input SKU is actually available in the inventory lookup
@@ -118,6 +121,5 @@ class CheckoutSolution:
                 total_cost += inventory[sku]["regular_price"] * skus[sku]
                 print('other_total_cost', total_cost)
             
-
         print('total_cost: ', total_cost)
         return total_cost
