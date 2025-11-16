@@ -81,21 +81,27 @@ class CheckoutSolution:
         skus = Counter(skus)
         print('skus', skus)
         
-        undiscounted_price = 0
-        bulk_deductions = 0
-        get_free_deductions = 0
+        total_price = 0
         for sku in skus:
             pprint(inventory[sku])
-            sku_freq = skus[sku]
             print('-------- processing sku: ', sku)
-            undiscounted_price += inventory[sku]["regular_price"] * sku_freq
-            
-            # bulk discounts
+                        
+            # Apply bulk discounts to total
             if discount_type == 'bulk':
-                print("bulk")
+                for min_qty in inventory[sku]["sorted_min_quantities"]:
+                    quotient, remainder = divmod(remaining_items, min_qty)
+                    remaining_items -= quotient * min_qty
+                    total_price += float(promos[min_qty]['promo_price']) * quotient
+        
+                total_price += float(inventory[sku]["regular_price"]) * float(remainder)
+                print('bulk_total_price', total_price)
 
-            # get free discounts
+        
+           # Add up all SKUs without promos
+            else:                    
+                total_price += inventory[sku]["regular_price"] * skus[sku]
+                print('other_total_price', total_price)
 
-        total_price = undiscounted_price - max([abs(bulk_deductions), abs(get_free_deductions)])
         print('total_price: ', total_price)
         return int(total_price)
+
