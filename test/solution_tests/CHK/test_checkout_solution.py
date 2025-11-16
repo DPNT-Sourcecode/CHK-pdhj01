@@ -29,9 +29,10 @@ class TestCheckout():
         assert checkout.checkout('EA') == 90
         assert checkout.checkout('EE') == 80
         assert checkout.checkout('EEB') == 80
-        # assert checkout.checkout('EEBB') == 110
+        assert checkout.checkout('EEBB') == 110
 
         
+
 
 
 
